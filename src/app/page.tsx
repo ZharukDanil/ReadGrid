@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import FavoriteTab from '@/components/FavoriteTab';
+import FadeIn from '@/components/FadeIn';
+import WebBackground from '@/components/WebBackground';
+import RecommendedBooks from '@/components/RecommendedBooks';
 
 type Book = {
   _id: string;
@@ -12,7 +15,7 @@ type Book = {
   description: string;
   fileUrl: string;
   coverUrl: string;
-  isPremium?: boolean; // 🆕
+  isPremium?: boolean;
 };
 
 type DecodedToken = {
@@ -50,11 +53,17 @@ export default function HomePage() {
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
   const [isPremium, setIsPremium] = useState(false); // 🆕
+  const [premiumChecked, setPremiumChecked] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const booksPerPage = 6;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [currentPage]);
 
   const loadUser = async () => {
     const token = localStorage.getItem('readgrid_token');
@@ -63,6 +72,8 @@ export default function HomePage() {
       setUsername('');
       setRole('');
       setIsPremium(false);
+      setPremiumChecked(true);
+      setAuthChecked(true);
       return;
     }
 
@@ -79,13 +90,15 @@ export default function HomePage() {
         setRole(decoded.role);
         setIsAuthorized(true);
         fetchFavorites(token);
-        await fetchUserPremiumStatus(decoded.userId, token); // 🆕
+        await fetchUserPremiumStatus(decoded.userId, token);
       }
     } catch {
       setIsAuthorized(false);
       setUsername('');
       setRole('');
       setIsPremium(false);
+    } finally {
+      setAuthChecked(true);
     }
   };
 
@@ -101,6 +114,8 @@ export default function HomePage() {
       }
     } catch (error) {
       console.error('Premium status error:', error);
+    } finally {
+      setPremiumChecked(true);
     }
   };
 
@@ -110,7 +125,7 @@ export default function HomePage() {
         headers: { Authorization: `Bearer ${token}` },
         cache: 'no-store'
       });
-      
+
       if (res.ok) {
         const data = await res.json();
         setFavorites(data.favorites.map((book: Book) => book._id));
@@ -203,7 +218,7 @@ export default function HomePage() {
   useEffect(() => {
     handleSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm, genreFilter, yearFilter, ]); // 🆕 додано isPremium
+  }, [searchTerm, genreFilter, yearFilter,]); // 🆕 додано isPremium
 
   const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
   const startIndex = (currentPage - 1) * booksPerPage;
@@ -218,120 +233,13 @@ export default function HomePage() {
     window.location.reload();
   };
 
-  // Canvas effect (залишається без змін)
-  useEffect(() => {
-    const canvas = document.createElement("canvas");
-    canvas.id = "readgrid-web";
-    canvas.style.position = "fixed";
-    canvas.style.top = "0";
-    canvas.style.left = "0";
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    canvas.style.pointerEvents = "none";
-    canvas.style.zIndex = "-60";
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    const mouse = { x: width / 2, y: height / 2, radius: 120 };
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
-    type Point = { x: number; y: number; vx: number; vy: number; phase: number };
-    const points: Point[] = [];
-    const pointCount = 50;
-
-    for (let i = 0; i < pointCount; i++) {
-      points.push({
-        x: 85 + Math.random() * (width - 170),
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
-        phase: Math.random() * Math.PI * 2
-      });
-    }
-
-    const draw = () => {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < pointCount; i++) {
-        const p1 = points[i];
-        if (p1.x <= 85 || p1.x >= width - 85) continue;
-
-        for (let j = i + 1; j < pointCount; j++) {
-          const p2 = points[j];
-          if (p2.x <= 85 || p2.x >= width - 85) continue;
-
-          const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-          if (dist < 160) {
-            const alpha = 0.05 + (1 - dist / 160) * 0.15 + 0.05 * Math.sin(p1.phase + Date.now() * 0.002);
-            ctx.strokeStyle = `rgba(210,180,140,${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      for (let i = 0; i < pointCount; i++) {
-        const p = points[i];
-
-        p.x += p.vx;
-        p.y += p.vy;
-        p.phase += 0.01;
-
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          p.vx -= dx * 0.0002 * force;
-          p.vy -= dy * 0.0002 * force;
-        }
-
-        if (p.x > 85 && p.x < width - 85) {
-          ctx.fillStyle = `rgba(210,180,140,${0.2 + 0.1 * Math.sin(p.phase)})`;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    const onMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-    window.addEventListener('mousemove', onMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-      canvas.remove();
-    };
-  }, []);
-
   return (
     <div className="page" style={{ position: 'relative', overflow: 'hidden' }}>
-      <canvas id="readgrid-web" className="readgrid-web"></canvas>
+      <WebBackground />
 
-      {isAuthorized && <FavoriteTab />}
+      {authChecked && isAuthorized && (
+        <FavoriteTab />
+      )}
 
       {/* Фонові елементи */}
       <div
@@ -367,8 +275,8 @@ export default function HomePage() {
         }}
       />
 
-      {/* Навігація */}
-      <nav
+{/* Навігація */}
+<nav
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -409,50 +317,62 @@ export default function HomePage() {
         </div>
 
         <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-          {isAuthorized ? (
-            <>
-              <Link href="/profile" className="nav-btn">👤 Профіль</Link>
-              {/* 🆕 Кнопка Premium */}
-              {!isPremium && (
-                <Link href="/premium" className="nav-btn" style={{ backgroundColor: "#d4a23b", color: "#fff" }}>
-                  ✨ Premium
-                </Link>
+          {authChecked && (
+            <FadeIn>
+              {isAuthorized ? (
+                <>
+                  <Link href="/profile" className="nav-btn">👤 Профіль</Link>
+                  <Link href="/recommendations" className="nav-btn" style={{ backgroundColor: "#4c8a52", color: "#fff" }}>
+                    ✨ Рекомендації
+                  </Link>
+                  {premiumChecked && (
+                    <>
+                      {!isPremium && (
+                        <Link href="/premium" className="nav-btn" style={{ backgroundColor: "#d4a23b", color: "#fff" }}>
+                          ✨ Premium
+                        </Link>
+                      )}
+                      {isPremium && (
+                        <span style={{
+                          padding: '8px 16px',
+                          backgroundColor: 'rgba(212,162,59,0.2)',
+                          borderRadius: '8px',
+                          color: '#d4a23b',
+                          fontSize: '0.9rem',
+                          fontWeight: 'bold'
+                        }}>
+                          ⭐ Premium
+                        </span>
+                      )}
+                    </>
+                  )}
+                  {role === 'admin' && (
+                    <Link href="/admin/books" className="nav-btn" style={{ backgroundColor: "#c47f5f", color: "#fff8f2" }}>
+                      🛠️ Admin Books Panel
+                    </Link>
+                  )}
+                  <button onClick={handleLogout} className="nav-btn delete">🚪 Вийти</button>
+                </>
+              ) : (
+                <>
+                  <Link href="/login" className="nav-btn">🔑 Увійти</Link>
+                  <Link href="/register" className="nav-btn">📝 Реєстрація</Link>
+                </>
               )}
-              {isPremium && (
-                <span style={{ 
-                  padding: '8px 16px', 
-                  backgroundColor: 'rgba(212,162,59,0.2)', 
-                  borderRadius: '8px',
-                  color: '#d4a23b',
-                  fontSize: '0.9rem',
-                  fontWeight: 'bold'
-                }}>
-                  ⭐ Premium
-                </span>
-              )}
-              {role === 'admin' && (
-                <Link href="/admin/books" className="nav-btn" style={{ backgroundColor: "#c47f5f", color: "#fff8f2" }}>
-                  🛠️ Admin Books Panel
-                </Link>
-              )}
-              <button onClick={handleLogout} className="nav-btn delete">🚪 Вийти</button>
-            </>
-          ) : (
-            <>
-              <Link href="/login" className="nav-btn">🔑 Увійти</Link>
-              <Link href="/register" className="nav-btn">📝 Реєстрація</Link>
-            </>
+            </FadeIn>
           )}
         </div>
       </nav>
 
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-        <p className="subtitle fade-in-left">
-          Вітаємо у системі електронної бібліотеки!📖
+        <p className="welcome-title fade-in-left">
+          Вітаємо у системі електронної бібліотеки! <span className="welcome-emoji">📖</span>
         </p>
+
+        <div className="welcome-divider"></div>
         {username && (
-          <p className="subtitle fade-in-right">
-            👋 Приємно бачити, {username}!
+          <p className="welcome-subtitle fade-in-right">
+            <span className="welcome-emoji">👋</span> Приємно бачити, {username}!
           </p>
         )}
       </div>

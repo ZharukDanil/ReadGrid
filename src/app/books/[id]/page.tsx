@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import CommentsSection from '@/components/CommentsSection/CommentsSection';
+import WebBackground from '@/components/WebBackground';
 
 type Book = {
     _id: string;
@@ -14,7 +15,7 @@ type Book = {
     description: string;
     coverUrl: string;
     fileUrl: string;
-    isPremium?: boolean; // 🆕
+    isPremium?: boolean;
 };
 
 type DecodedToken = {
@@ -27,12 +28,14 @@ type DecodedToken = {
 export default function BookDetailsPage() {
     const { id } = useParams();
     const [book, setBook] = useState<Book | null>(null);
+    const [notFound, setNotFound] = useState(false);
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [username, setUsername] = useState("");
     const [role, setRole] = useState("");
     const [isFavorite, setIsFavorite] = useState(false);
-    const [isPremium, setIsPremium] = useState(false); // 🆕
-    const [userId, setUserId] = useState<string | null>(null); // 🆕
+    const [isPremium, setIsPremium] = useState(false);
+    const [userId, setUserId] = useState<string | null>(null);
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("readgrid_token");
@@ -43,9 +46,9 @@ export default function BookDetailsPage() {
                     setIsAuthorized(true);
                     setUsername(decoded.username);
                     setRole(decoded.role);
-                    setUserId(decoded.userId); // 🆕
+                    setUserId(decoded.userId);
                     checkFavorite(token);
-                    fetchUserPremiumStatus(decoded.userId, token); // 🆕
+                    fetchUserPremiumStatus(decoded.userId, token);
                 } else {
                     localStorage.removeItem("readgrid_token");
                 }
@@ -72,7 +75,6 @@ export default function BookDetailsPage() {
         }
     };
 
-    // 🆕 Перевірка Premium статусу користувача
     const fetchUserPremiumStatus = async (userId: string, token: string) => {
         try {
             const res = await fetch(`/api/users/${userId}`, {
@@ -123,122 +125,44 @@ export default function BookDetailsPage() {
         fetch(`/api/books/${id}`)
             .then((res) => res.json())
             .then((data) => {
-                if (data && data._id) setBook(data);
-                else setBook(null);
+                if (data && data._id) {
+                    setBook(data);
+                } else {
+                    setBook(null);
+                    setNotFound(true);
+                }
             })
-            .catch(() => setBook(null));
+            .catch(() => {
+                setBook(null);
+                setNotFound(true);
+            });
     }, [id]);
 
-    useEffect(() => {
-        const canvas = document.createElement("canvas");
-        canvas.id = "readgrid-web";
-        canvas.style.position = "fixed";
-        canvas.style.top = "0";
-        canvas.style.left = "0";
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.pointerEvents = "none";
-        canvas.style.zIndex = "-60";
-        document.body.appendChild(canvas);
-
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-
-        let width = (canvas.width = window.innerWidth);
-        let height = (canvas.height = window.innerHeight);
-
-        const mouse = { x: width / 2, y: height / 2, radius: 120 };
-
-        window.addEventListener("resize", () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        type Point = { x: number; y: number; vx: number; vy: number; phase: number };
-        const points: Point[] = [];
-        const pointCount = 50;
-
-        for (let i = 0; i < pointCount; i++) {
-            points.push({
-                x: 85 + Math.random() * (width - 170),
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.2,
-                vy: (Math.random() - 0.5) * 0.2,
-                phase: Math.random() * Math.PI * 2,
-            });
+    const handleShare = async () => {
+        const url = typeof window !== 'undefined' ? window.location.href : '';
+        try {
+            await navigator.clipboard.writeText(url);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (error) {
+            console.error('Copy to clipboard error:', error);
         }
+    };
 
-        const draw = () => {
-            if (!ctx) return;
-            ctx.clearRect(0, 0, width, height);
-
-            for (let i = 0; i < pointCount; i++) {
-                const p1 = points[i];
-                if (p1.x <= 85 || p1.x >= width - 85) continue;
-
-                for (let j = i + 1; j < pointCount; j++) {
-                    const p2 = points[j];
-                    if (p2.x <= 85 || p2.x >= width - 85) continue;
-
-                    const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-                    if (dist < 160) {
-                        const alpha =
-                            0.05 +
-                            (1 - dist / 160) * 0.15 +
-                            0.05 * Math.sin(p1.phase + Date.now() * 0.002);
-                        ctx.strokeStyle = `rgba(210,180,140,${alpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            for (let i = 0; i < pointCount; i++) {
-                const p = points[i];
-
-                p.x += p.vx;
-                p.y += p.vy;
-                p.phase += 0.01;
-
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                const dx = mouse.x - p.x;
-                const dy = mouse.y - p.y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < mouse.radius) {
-                    const force = (mouse.radius - dist) / mouse.radius;
-                    p.vx -= dx * 0.0002 * force;
-                    p.vy -= dy * 0.0002 * force;
-                }
-
-                if (p.x > 85 && p.x < width - 85) {
-                    ctx.fillStyle = `rgba(210,180,140,${0.2 + 0.1 * Math.sin(p.phase)})`;
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            requestAnimationFrame(draw);
-        };
-
-        draw();
-
-        const onMouseMove = (e: MouseEvent) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        };
-        window.addEventListener("mousemove", onMouseMove);
-
-        return () => {
-            window.removeEventListener("mousemove", onMouseMove);
-            canvas.remove();
-        };
-    }, []);
+    if (notFound) {
+        return (
+            <div style={{ textAlign: "center", marginTop: "4rem", color: "#caa98a" }}>
+                <p style={{ fontSize: "3rem", marginBottom: "1rem" }}>📕</p>
+                <h1 style={{ color: "#f8d9a6", fontSize: "1.6rem", marginBottom: "0.5rem" }}>
+                    Книгу не знайдено
+                </h1>
+                <p style={{ marginBottom: "1.5rem" }}>
+                    Можливо, вона була видалена або посилання невірне
+                </p>
+                <Link href="/" className="nav-btn">🏠 На головну</Link>
+            </div>
+        );
+    }
 
     if (!book) {
         return (
@@ -250,12 +174,46 @@ export default function BookDetailsPage() {
 
     return (
         <div className="page" style={{ position: "relative", overflow: "hidden", padding: "2rem" }}>
-            <canvas id="readgrid-web" className="readgrid-web"></canvas>
+            <WebBackground />
 
-            <Link href="/" className="nav-btn" style={{ marginBottom: "1.5rem", display: "inline-block" }}>
+            <div
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '85px',
+                    height: '100%',
+                    backgroundImage: 'url("/side-left.png")',
+                    backgroundRepeat: 'repeat-y',
+                    backgroundSize: 'contain',
+                    opacity: 0.12,
+                    filter: 'blur(0.4px) brightness(1.1)',
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                }}
+            />
+            <div
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '85px',
+                    height: '100%',
+                    backgroundImage: 'url("/side-right.png")',
+                    backgroundRepeat: 'repeat-y',
+                    backgroundSize: 'contain',
+                    opacity: 0.12,
+                    filter: 'blur(0.4px) brightness(1.1)',
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                }}
+            />
+
+            <Link href="/" className="nav-btn" style={{ marginBottom: "1.5rem", display: "inline-block", position: 'relative', zIndex: 2 }}>
                 ⬅️ На головну
             </Link>
 
+            {/* === Верхній блок: обкладинка + інформація (старий стиль) === */}
             <div
                 style={{
                     display: "flex",
@@ -265,6 +223,7 @@ export default function BookDetailsPage() {
                     justifyContent: "center",
                     flexWrap: "wrap",
                     position: 'relative',
+                    zIndex: 2,
                 }}
             >
                 <div style={{ position: 'relative' }}>
@@ -280,7 +239,6 @@ export default function BookDetailsPage() {
                         }}
                     />
 
-                    {/* 🆕 Мітка Premium на обкладинці */}
                     {book.isPremium && (
                         <div
                             style={{
@@ -289,19 +247,18 @@ export default function BookDetailsPage() {
                                 left: '10px',
                                 background: 'linear-gradient(135deg, #d4a23b 0%, #f4d03f 100%)',
                                 color: '#1a1410',
-                                padding: '8px 16px',
+                                padding: '5px 12px',
                                 borderRadius: '20px',
-                                fontSize: '0.9rem',
+                                fontSize: '0.8rem',
                                 fontWeight: 'bold',
                                 zIndex: 10,
-                                boxShadow: '0 4px 12px rgba(212,162,59,0.6)',
+                                boxShadow: '0 2px 8px rgba(212,162,59,0.5)',
                             }}
                         >
                             ⭐ Premium
                         </div>
                     )}
 
-                    {/* 🔥 Кнопка обраного на обкладинці */}
                     {isAuthorized && (
                         <button
                             onClick={toggleFavorite}
@@ -336,7 +293,6 @@ export default function BookDetailsPage() {
                             {isFavorite ? '❤️' : '🤍'}
                         </button>
                     )}
-
                 </div>
 
                 <div style={{ maxWidth: "600px" }}>
@@ -359,7 +315,6 @@ export default function BookDetailsPage() {
                     <div style={{ marginTop: "2rem", display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                         {isAuthorized ? (
                             <>
-                                {/* 🆕 Перевірка Premium для завантаження */}
                                 {book.isPremium && !isPremium ? (
                                     <Link
                                         href="/premium"
@@ -410,101 +365,58 @@ export default function BookDetailsPage() {
                                 🔒 Увійдіть, щоб завантажити файл та додати в обране
                             </p>
                         )}
+
+                        <button
+                            onClick={handleShare}
+                            className="read-btn"
+                            style={{
+                                backgroundColor: copied ? "#4c8a52" : "#705444",
+                                color: "#f8d9a6",
+                                padding: "10px 18px",
+                                borderRadius: "8px",
+                            }}
+                        >
+                            {copied ? '✅ Скопійовано!' : '🔗 Поділитися'}
+                        </button>
                     </div>
                 </div>
             </div>
 
-
-            <div
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '85px',
-                    height: '100%',
-                    backgroundImage: 'url("/side-left.png")',
-                    backgroundRepeat: 'repeat-y',
-                    backgroundSize: 'contain',
-                    opacity: 0.12,
-                    filter: 'blur(0.4px) brightness(1.1)',
-                    pointerEvents: 'none',
-                    zIndex: 0,
-                }}
-            />
-            <div
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    right: 0,
-                    width: '85px',
-                    height: '100%',
-                    backgroundImage: 'url("/side-right.png")',
-                    backgroundRepeat: 'repeat-y',
-                    backgroundSize: 'contain',
-                    opacity: 0.12,
-                    filter: 'blur(0.4px) brightness(1.1)',
-                    pointerEvents: 'none',
-                    zIndex: 0,
-                }}
-            />
-
+            {/* === Відгуки та коментарі (новий стиль) === */}
             <section
                 style={{
-                    marginTop: "4rem",
-                    padding: "2.5rem",
-                    backgroundColor: "rgba(52, 40, 34, 0.65)",
+                    marginTop: "2.5rem",
+                    padding: "2.2rem 2.5rem",
+                    backgroundColor: "rgba(255,255,255,0.05)",
                     borderRadius: "20px",
-                    border: "1px solid rgba(112, 84, 68, 0.35)",
-                    boxShadow: "0 0 30px rgba(0, 0, 0, 0.4)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    boxShadow: "0 8px 28px rgba(0,0,0,0.3)",
                     position: "relative",
                     zIndex: 2,
                     width: "100%",
                     maxWidth: "1400px",
                     marginLeft: "auto",
                     marginRight: "auto",
+                    boxSizing: 'border-box',
                 }}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.6rem",
-                        marginBottom: "1.8rem",
-                    }}
-                >
-                    <span style={{ fontSize: "1.8rem" }}>💬</span>
-                    <h2
-                        style={{
-                            color: "#f8d9a6",
-                            fontSize: "1.8rem",
-                            fontWeight: 600,
-                            textShadow: "0 0 4px rgba(248, 217, 166, 0.4)",
-                        }}
-                    >
-                        Відгуки та коментарі читачів
-                    </h2>
+                <div style={{ textAlign: 'center', marginBottom: '1.6rem' }}>
+                    <p className="welcome-title" style={{ margin: 0 }}>
+                        Відгуки та коментарі <span className="welcome-emoji">💬</span>
+                    </p>
+                    <div className="welcome-divider"></div>
+                    <p style={{ color: "#a07e65", fontSize: "1rem", fontStyle: "italic", margin: '0.6rem 0 0' }}>
+                        Поділися своїми враженнями від книги або прочитай, що думають інші 📖
+                    </p>
                 </div>
 
-                <p
-                    style={{
-                        color: "#a07e65",
-                        fontSize: "1.1rem",
-                        marginBottom: "1.5rem",
-                        lineHeight: "1.6",
-                        fontStyle: "italic",
-                        textAlign: "center",
-                    }}
-                >
-                    Поділися своїми враженнями від книги або прочитай, що думають інші 📖
-                </p>
-
                 <div
                     style={{
-                        backgroundColor: "rgba(27, 20, 17, 0.65)",
+                        backgroundColor: "rgba(27, 20, 17, 0.5)",
                         borderRadius: "16px",
                         padding: "2rem",
-                        border: "1px solid rgba(112, 84, 68, 0.3)",
-                        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.3)",
+                        border: "1px solid rgba(255,255,255,0.1)",
+                        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.25)",
                     }}
                 >
                     <CommentsSection bookId={book._id} />

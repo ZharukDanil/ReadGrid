@@ -5,7 +5,7 @@ type CommentItem = {
     _id: string;
     content: string;
     rating?: number;
-    userId: { _id?: string; username?: string } | string | null; // 🔥 Додано null
+    userId: { _id?: string; username?: string; role?: string } | string | null;
     createdAt: string;
 };
 
@@ -16,7 +16,7 @@ function decodeJWT(token: string): DecodedToken | null {
         const parts = token.split('.');
         if (parts.length !== 3) return null;
         const payload = parts[1];
-        
+
         const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
         const binaryString = atob(base64);
         const bytes = new Uint8Array(binaryString.length);
@@ -79,8 +79,8 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
         setLoading(true);
         try {
             const timestamp = new Date().getTime();
-            const res = await fetch(`/api/comments?bookId=${bookId}&t=${timestamp}`, { 
-                cache: "no-store" 
+            const res = await fetch(`/api/comments?bookId=${bookId}&t=${timestamp}`, {
+                cache: "no-store"
             });
             if (res.ok) {
                 const data = await res.json();
@@ -159,7 +159,7 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
             setText('');
             setRating('');
             setMessage('✅ Коментар додано');
-            
+
             setTimeout(async () => {
                 const timestamp = new Date().getTime();
                 const bookRes = await fetch(`/api/books/${bookId}?t=${timestamp}`, { cache: 'no-store' });
@@ -167,7 +167,7 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                 setBookData(bookData);
                 await fetchComments();
             }, 500);
-            
+
         } catch (err: any) {
             setMessage('Помилка мережі: ' + (err.message || 'Невідома помилка'));
         }
@@ -182,14 +182,14 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                 headers: { Authorization: `Bearer ${token}` },
             });
             if (!res.ok) throw new Error('Не вдалося видалити коментар');
-            
+
             await fetchComments();
-            
+
             const timestamp = new Date().getTime();
             const bookRes = await fetch(`/api/books/${bookId}?t=${timestamp}`, { cache: 'no-store' });
             const updatedBookData = await bookRes.json();
             setBookData(updatedBookData);
-            
+
             setMessage('✅ Коментар видалено');
         } catch (err) {
             console.error(err);
@@ -216,6 +216,18 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
         return '👻 Видалений користувач';
     };
 
+    // 🆕 Дані для аватара — перша буква імені + роль (для золотої обводки адмінів)
+    const getAvatarInfo = (userId: CommentItem['userId']) => {
+        if (!userId || typeof userId !== 'object' || !userId.username) {
+            return { letter: '?', isAdmin: false, isDeleted: true };
+        }
+        return {
+            letter: userId.username.charAt(0).toUpperCase(),
+            isAdmin: userId.role === 'admin',
+            isDeleted: false,
+        };
+    };
+
     return (
         <div style={{
             marginTop: "3rem",
@@ -234,9 +246,9 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                     borderRadius: "12px",
                     border: "2px solid rgba(255, 217, 102, 0.3)",
                 }}>
-                    <div style={{ 
-                        color: "#ffd966", 
-                        fontSize: "2.5rem", 
+                    <div style={{
+                        color: "#ffd966",
+                        fontSize: "2.5rem",
                         marginBottom: "0.5rem",
                         textShadow: "0 0 10px rgba(255, 217, 102, 0.5)"
                     }}>
@@ -341,11 +353,11 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                                     <option value="5">★★★★★ Чудово (5)</option>
                                 </select>
                             ) : (
-                                <div style={{ 
-                                    flex: "1", 
+                                <div style={{
+                                    flex: "1",
                                     minWidth: "200px",
-                                    color: "#a07e65", 
-                                    fontSize: "0.95rem", 
+                                    color: "#a07e65",
+                                    fontSize: "0.95rem",
                                     fontStyle: "italic",
                                     padding: "0.8rem 1rem",
                                     backgroundColor: "rgba(160, 126, 101, 0.1)",
@@ -386,8 +398,8 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                         </div>
 
                         {message && (
-                            <div style={{ 
-                                marginTop: "1rem", 
+                            <div style={{
+                                marginTop: "1rem",
                                 padding: "0.8rem 1rem",
                                 color: message.includes('✅') ? "#a8e6a1" : "#ff9999",
                                 backgroundColor: message.includes('✅') ? "rgba(168, 230, 161, 0.1)" : "rgba(255, 153, 153, 0.1)",
@@ -453,11 +465,12 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                 ) : (
                     <div style={{ display: "grid", gap: "1.25rem" }}>
                         {paginatedComments.map((c) => {
-                            // 🔥 Безпечна перевірка userId
                             const userId = c.userId && typeof c.userId === 'object' ? c.userId._id : null;
                             const canDelete =
                                 currentUser &&
                                 (currentUser.role === 'admin' || currentUser.userId === userId);
+
+                            const avatar = getAvatarInfo(c.userId);
 
                             return (
                                 <div key={c._id} style={{
@@ -486,25 +499,53 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                                         borderBottom: "1px solid rgba(112,84,68,0.2)",
                                     }}>
                                         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                                            {/* 🆕 Аватар — перша буква імені, в стилі профілю */}
                                             <div style={{
-                                                width: "36px",
-                                                height: "36px",
+                                                width: "38px",
+                                                height: "38px",
                                                 borderRadius: "50%",
-                                                backgroundColor: "rgba(112,84,68,0.3)",
+                                                background: avatar.isDeleted
+                                                    ? "rgba(112,84,68,0.25)"
+                                                    : "radial-gradient(circle at 35% 30%, #6b4e38 0%, #4a3527 55%, #35261b 100%)",
+                                                border: avatar.isAdmin
+                                                    ? "2px solid #d4a23b"
+                                                    : "2px solid #a3805f",
+                                                boxShadow: avatar.isAdmin
+                                                    ? "0 0 10px rgba(212,162,59,0.5), inset 0 1px 3px rgba(0,0,0,0.3)"
+                                                    : "inset 0 1px 3px rgba(0,0,0,0.3)",
                                                 display: "flex",
                                                 alignItems: "center",
                                                 justifyContent: "center",
-                                                fontSize: "1.2rem",
+                                                fontSize: "1rem",
+                                                fontWeight: 700,
+                                                color: "#fdeecb",
+                                                textShadow: "0 1px 2px rgba(0,0,0,0.6)",
+                                                flexShrink: 0,
                                             }}>
-                                                {c.userId ? '👤' : '👻'}
+                                                {avatar.isDeleted ? '👻' : avatar.letter}
                                             </div>
-                                            <strong style={{ 
-                                                color: c.userId ? "#f8d9a6" : "#a07e65", 
+                                            <strong style={{
+                                                color: c.userId ? "#f8d9a6" : "#a07e65",
                                                 fontSize: "1.05rem",
                                                 fontStyle: c.userId ? 'normal' : 'italic'
                                             }}>
                                                 {getUserName(c.userId)}
                                             </strong>
+                                            {avatar.isAdmin && (
+                                                <span style={{
+                                                    padding: '2px 10px',
+                                                    borderRadius: '20px',
+                                                    fontSize: '0.7rem',
+                                                    fontWeight: 700,
+                                                    letterSpacing: '0.4px',
+                                                    textTransform: 'uppercase',
+                                                    color: '#d4a23b',
+                                                    background: 'rgba(212,162,59,0.15)',
+                                                    border: '1px solid rgba(212,162,59,0.35)',
+                                                }}>
+                                                    ⚡ Адмін
+                                                </span>
+                                            )}
                                         </div>
                                         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                                             <span style={{ color: "#a07e65", fontSize: "0.9rem" }}>
@@ -584,8 +625,8 @@ export default function CommentsSection({ bookId }: { bookId: string }) {
                             onClick={() => setPage(i + 1)}
                             style={{
                                 padding: "0.6rem 1.1rem",
-                                background: page === i + 1 
-                                    ? "linear-gradient(135deg, #705444 0%, #8b6b57 100%)" 
+                                background: page === i + 1
+                                    ? "linear-gradient(135deg, #705444 0%, #8b6b57 100%)"
                                     : "rgba(58, 44, 36, 0.5)",
                                 color: page === i + 1 ? "#f8d9a6" : "#a07e65",
                                 border: `2px solid ${page === i + 1 ? "#705444" : "rgba(112,84,68,0.3)"}`,

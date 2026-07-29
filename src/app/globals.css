@@ -295,3 +295,70 @@ button.delete:hover {
   color: #f8d9a6;
   text-shadow: 0 0 8px rgba(248, 217, 166, 0.5);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+.welcome-title {
+  font-family: 'Merriweather', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.4;
+  background: linear-gradient(180deg, #fdeecb 0%, #d9a866 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .welcome-title {
+    font-size: 1.3rem;
+  }
+}
+
+.welcome-emoji {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: initial;
+  text-shadow: none;
+  -webkit-text-fill-color: initial;
+}
+
+.welcome-subtitle {
+  font-family: 'Merriweather', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  background: linear-gradient(180deg, #fdeecb 0%, #d9a866 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+}
+
+.welcome-divider {
+  width: 780px;
+  height: 2px;
+  margin: 14px auto;
+  background: linear-gradient(90deg, transparent, #d9a866, transparent);
+  animation: growLine 1.2s ease-out;
+}
+
+@keyframes growLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 780px;
+    opacity: 1;
+  }
+}
+
+.welcome-divider.small {
+  width: 200px;
+  animation: none;
+}

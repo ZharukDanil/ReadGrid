@@ -1,10 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function FavoriteTab() {
   const [isHovered, setIsHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   return (
     <div
@@ -18,7 +24,8 @@ export default function FavoriteTab() {
         width: '110px',
         height: '150px',
         cursor: 'pointer',
-        transition: 'top 0.4s ease, transform 0.2s ease',
+        opacity: mounted ? 1 : 0,
+        transition: 'top 0.4s ease, transform 0.2s ease, opacity 0.4s ease',
         transform: isHovered ? 'scale(1.05)' : 'scale(1)',
         zIndex: 1000,
         display: 'flex',
@@ -28,7 +35,7 @@ export default function FavoriteTab() {
         paddingBottom: '25px',
       }}      
     >
-      {/* Основна форма закладки */}
+      {/* остальное без изменений */}
       <svg
         width="110"
         height="150"
@@ -46,14 +53,10 @@ export default function FavoriteTab() {
             <stop offset="100%" style={{ stopColor: 'rgba(112,84,68,1)', stopOpacity: 1 }} />
           </linearGradient>
         </defs>
-        
-        {/* Заливка */}
         <path
           d="M 5 0 L 105 0 L 105 130 L 55 150 L 5 130 Z"
           fill="url(#bookmarkGradient)"
         />
-        
-        {/* Рамка */}
         <path
           d="M 5 0 L 105 0 L 105 130 L 55 150 L 5 130 Z"
           fill="none"
@@ -61,8 +64,7 @@ export default function FavoriteTab() {
           strokeWidth="2"
         />
       </svg>
-      
-      {/* Контент */}
+
       <div style={{
         position: 'relative',
         zIndex: 1,
@@ -79,7 +81,6 @@ export default function FavoriteTab() {
         }}>
           📑
         </div>
-        
         <div style={{
           color: '#f8d9a6',
           fontWeight: 600,
