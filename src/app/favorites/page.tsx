@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import WebBackground from '@/components/WebBackground';
+import { downloadBook } from '@/lib/downloadBook';
 
 type Book = {
   _id: string;
@@ -10,8 +11,8 @@ type Book = {
   genre: string;
   year: number;
   description: string;
-  fileUrl: string;
   coverUrl: string;
+  isPremium?: boolean;
 };
 
 type DecodedToken = {
@@ -49,6 +50,9 @@ export default function FavoritesPage() {
   const [loading, setLoading] = useState(true);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [username, setUsername] = useState('');
+  const [isPremium, setIsPremium] = useState(false);
+  const [premiumChecked, setPremiumChecked] = useState(false);
+  const [role, setRole] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
   const booksPerPage = 6;
@@ -69,8 +73,10 @@ export default function FavoritesPage() {
         setLoading(false);
       } else {
         setUsername(decoded.username);
+        setRole(decoded.role);
         setIsAuthorized(true);
         fetchFavorites(token);
+        fetchUserPremiumStatus(decoded.userId, token);
       }
     } catch {
       setIsAuthorized(false);
@@ -116,6 +122,25 @@ export default function FavoritesPage() {
     }
   };
 
+  const fetchUserPremiumStatus = async (userId: string, token: string) => {
+    try {
+      const res = await fetch(`/api/users/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setIsPremium(data.isPremium || false);
+      }
+    } catch (error) {
+      console.error('Premium status error:', error);
+    } finally {
+      setPremiumChecked(true);
+    }
+  };
+
+  const canDownload = (book: Book) =>
+    !book.isPremium || isPremium || role === 'admin' || role === 'superadmin' || !premiumChecked;
+
   useEffect(() => {
     const filtered = books.filter(book => {
       const matchesSearch =
@@ -136,6 +161,20 @@ export default function FavoritesPage() {
     setFilteredBooks(filtered);
     setCurrentPage(1);
   }, [searchTerm, genreFilter, yearFilter, books]);
+
+  const cardBtnStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: '0.35rem 0.7rem',
+    fontSize: '0.85rem',
+    borderRadius: '6px',
+    fontFamily: 'inherit',
+    fontWeight: 'normal',
+    letterSpacing: 'normal',
+    cursor: 'pointer',
+  };
 
   const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
   const startIndex = (currentPage - 1) * booksPerPage;
@@ -230,7 +269,20 @@ export default function FavoritesPage() {
       ) : (
         <section className="book-grid">
           {currentBooks.map(book => (
-            <div key={book._id} className="book-card">
+            <div key={book._id} className="book-card" style={{ position: 'relative' }}>
+              {book.isPremium && (
+                <div
+                  style={{
+                    position: 'absolute', top: '10px', left: '10px',
+                    background: 'linear-gradient(135deg, #d4a23b 0%, #f4d03f 100%)',
+                    color: '#1a1410', padding: '5px 12px', borderRadius: '20px',
+                    fontSize: '0.8rem', fontWeight: 'bold', zIndex: 10,
+                    boxShadow: '0 2px 8px rgba(212,162,59,0.5)',
+                  }}
+                >
+                  ⭐ Premium
+                </div>
+              )}
               <img
                 src={book.coverUrl || '/no-cover.png'}
                 alt={`Обкладинка ${book.title}`}
@@ -311,49 +363,33 @@ export default function FavoritesPage() {
                 {book.description?.slice(0, 80)}...
               </p>
 
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  marginTop: '0.8rem',
-                }}
-              >
-                <Link
-                  href={`/books/${book._id}`}
-                  className="read-btn"
-                  style={{
-                    padding: '0.35rem 0.7rem',
-                    fontSize: '0.85rem',
-                    borderRadius: '6px',
-                  }}
-                >
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '0.8rem' }}>
+                <Link href={`/books/${book._id}`} className="read-btn" style={cardBtnStyle}>
                   📖 Детальніше
                 </Link>
 
-                <a
-                  href={book.fileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="read-btn"
-                  style={{
-                    padding: '0.35rem 0.7rem',
-                    fontSize: '0.85rem',
-                    borderRadius: '6px',
-                  }}
-                >
-                  📥 Завантажити
-                </a>
+                {canDownload(book) ? (
+                  <button
+                    onClick={() => downloadBook(book._id)}
+                    className="read-btn"
+                    style={cardBtnStyle}
+                  >
+                    📥 Завантажити
+                  </button>
+                ) : (
+                  <Link
+                    href="/premium"
+                    className="read-btn"
+                    style={{ ...cardBtnStyle, background: '#d4a23b', whiteSpace: 'nowrap' }}
+                  >
+                    ⭐ Premium
+                  </Link>
+                )}
 
                 <button
                   onClick={() => removeFromFavorites(book._id)}
                   className="read-btn delete"
-                  style={{
-                    backgroundColor: '#c45f5f',
-                    padding: '0.35rem 0.7rem',
-                    fontSize: '0.85rem',
-                    borderRadius: '6px',
-                  }}
+                  style={{ ...cardBtnStyle, backgroundColor: '#c45f5f' }}
                 >
                   💔 Видалити
                 </button>

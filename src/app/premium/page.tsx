@@ -3,11 +3,110 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { jwtDecode } from 'jwt-decode';
+
+type DecodedToken = {
+    userId: string;
+    username: string;
+    role: string;
+    exp: number;
+};
 
 export default function PremiumPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [authChecked, setAuthChecked] = useState(false);
+    const [testMode, setTestMode] = useState<boolean | null>(null);
+    const [settingsLoading, setSettingsLoading] = useState(false);
+    const [demoLoading, setDemoLoading] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('readgrid_token');
+        if (!token) { setAuthChecked(true); return; }
+
+        try {
+            const decoded = jwtDecode<DecodedToken>(token);
+            if (decoded.exp * 1000 > Date.now() && (decoded.role === 'admin' || decoded.role === 'superadmin')) {
+                setIsAdmin(true);
+                fetchSettings(token);
+            } else {
+                setAuthChecked(true);
+            }
+        } catch {
+            setAuthChecked(true);
+        }
+    }, []);
+
+    const fetchSettings = async (token: string) => {
+        try {
+            const res = await fetch('/api/admin/settings', {
+                headers: { Authorization: `Bearer ${token}` },
+                cache: 'no-store',
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setTestMode(data.paymentTestMode);
+            }
+        } catch (err) {
+            console.error('Fetch settings error:', err);
+        } finally {
+            setAuthChecked(true);
+        }
+    };
+
+    const toggleTestMode = async () => {
+        if (testMode === null) return;
+        setSettingsLoading(true);
+        const token = localStorage.getItem('readgrid_token');
+        try {
+            const res = await fetch('/api/admin/settings', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ paymentTestMode: !testMode }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+                setTestMode(data.paymentTestMode);
+            } else {
+                setMessage(`❌ ${data.message || 'Не вдалося змінити режим'}`);
+            }
+        } catch {
+            setMessage('❌ Помилка мережі');
+        } finally {
+            setSettingsLoading(false);
+        }
+    };
+
+    const handleDemoActivate = async (plan: 'monthly' | 'yearly') => {
+        setDemoLoading(true);
+        setMessage('⏳ Демо-активація...');
+        const token = localStorage.getItem('readgrid_token');
+        try {
+            const res = await fetch('/api/payment/demo-activate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ plan }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+                setMessage('✅ Premium активовано в демо-режимі!');
+            } else {
+                setMessage(`❌ ${data.message || 'Не вдалося активувати демо-режим'}`);
+            }
+        } catch {
+            setMessage('❌ Помилка мережі');
+        } finally {
+            setDemoLoading(false);
+        }
+    };
 
     useEffect(() => {
         const canvas = document.createElement("canvas");
@@ -18,7 +117,7 @@ export default function PremiumPage() {
         canvas.style.width = "100%";
         canvas.style.height = "100%";
         canvas.style.pointerEvents = "none";
-        canvas.style.zIndex = "0"; // фон
+        canvas.style.zIndex = "0";
         document.body.appendChild(canvas);
 
         const ctx = canvas.getContext("2d");
@@ -208,8 +307,8 @@ export default function PremiumPage() {
                     style={{
                         width: '560px',
                         height: '1px',
-                        margin: '0.5rem auto', // центрируем
-                        backgroundColor: 'rgba(248, 217, 166, 0.5)', // полупрозрачный золотистый
+                        margin: '0.5rem auto',
+                        backgroundColor: 'rgba(248, 217, 166, 0.5)',
                         borderRadius: '1px',
                     }}
                 />
@@ -348,6 +447,127 @@ export default function PremiumPage() {
                     </button>
                 </div>
             </section>
+
+            {/* Адмін-панель — стиль як у блоках профілю: суцільна картка, внутрішня "плашка" статусу */}
+            {isAdmin && (
+                <section
+                    style={{
+                        maxWidth: '700px',
+                        margin: '0 auto 2rem',
+                        padding: '1.8rem 2rem',
+                        background: 'rgba(139,69,69,0.08)',
+                        border: '2px dashed rgba(212,162,59,0.5)',
+                        borderRadius: '16px',
+                        position: 'relative',
+                        zIndex: 1,
+                        opacity: authChecked ? 1 : 0,
+                        transform: authChecked ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.98)',
+                        transition: 'opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+                        boxShadow: '0 0 0 rgba(212,162,59,0)',
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)';
+                        e.currentTarget.style.borderColor = 'rgba(212,162,59,0.9)';
+                        e.currentTarget.style.boxShadow = '0 10px 28px rgba(212,162,59,0.2)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                        e.currentTarget.style.borderColor = 'rgba(212,162,59,0.5)';
+                        e.currentTarget.style.boxShadow = '0 0 0 rgba(212,162,59,0)';
+                    }}
+                >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', justifyContent: 'center', marginBottom: '0.6rem' }}>
+                        <span style={{ fontSize: '1.3rem' }}>⚙️</span>
+                        <h3 style={{ color: '#d4a23b', fontSize: '1.15rem', margin: 0 }}>
+                            Адмін-панель: тестовий режим оплати
+                        </h3>
+                    </div>
+
+                    <p style={{ color: '#a58b6f', fontSize: '0.88rem', textAlign: 'center', marginBottom: '1.3rem', lineHeight: 1.5 }}>
+                        У тестовому режимі будь-який адмін/суперадмін може активувати Premium собі
+                        без реальної оплати через WayForPay — зручно для демонстрації.
+                    </p>
+
+                    {/* Статус — темна "плашка" всередині пунктирної картки, для контрасту */}
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            background: 'rgba(0,0,0,0.25)',
+                            borderRadius: '10px',
+                            padding: '0.9rem 1.2rem',
+                            marginBottom: testMode ? '1.2rem' : 0,
+                        }}
+                    >
+                        <span style={{ color: '#f8d9a6', fontWeight: 600 }}>
+                            Статус:{' '}
+                            <span style={{ color: testMode === null ? '#a58b6f' : testMode ? '#6fbf73' : '#d97a6c' }}>
+                                {testMode === null ? '⏳ Завантаження...' : testMode ? '🟢 Увімкнено' : '🔴 Вимкнено'}
+                            </span>
+                        </span>
+                        <button
+                            onClick={toggleTestMode}
+                            disabled={testMode === null || settingsLoading}
+                            style={{
+                                padding: '8px 18px',
+                                borderRadius: '8px',
+                                border: 'none',
+                                background: testMode
+                                    ? 'linear-gradient(135deg, #8b4545 0%, #a85858 100%)'
+                                    : 'linear-gradient(135deg, #4c8a52 0%, #5ba963 100%)',
+                                color: '#fff',
+                                cursor: settingsLoading ? 'not-allowed' : 'pointer',
+                                fontWeight: 700,
+                                fontSize: '0.9rem',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                            }}
+                        >
+                            {settingsLoading ? '⏳...' : testMode ? 'Вимкнути' : 'Увімкнути'}
+                        </button>
+                    </div>
+
+                    {testMode && (
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                            {(['monthly', 'yearly'] as const).map((plan) => (
+                                <button
+                                    key={plan}
+                                    onClick={() => handleDemoActivate(plan)}
+                                    disabled={demoLoading}
+                                    style={{
+                                        padding: '10px 22px',
+                                        borderRadius: '8px',
+                                        border: '1px solid rgba(0,0,0,0.25)',
+                                        background: 'linear-gradient(135deg, #e0b24a 0%, #c89a3a 100%)',
+                                        color: '#2a1b12',
+                                        fontWeight: 700,
+                                        fontSize: '0.92rem',
+                                        cursor: demoLoading ? 'not-allowed' : 'pointer',
+                                        boxShadow: '0 3px 10px rgba(0,0,0,0.35)',
+                                        transition: 'transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.4rem',
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        if (demoLoading) return;
+                                        e.currentTarget.style.transform = 'translateY(-2px)';
+                                        e.currentTarget.style.background = 'linear-gradient(135deg, #ecc066 0%, #d4a845 100%)';
+                                        e.currentTarget.style.boxShadow = '0 6px 14px rgba(212,168,69,0.4)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.background = 'linear-gradient(135deg, #e0b24a 0%, #c89a3a 100%)';
+                                        e.currentTarget.style.boxShadow = '0 3px 10px rgba(0,0,0,0.35)';
+                                    }}
+                                >
+                                    🧪 Демо: {plan === 'monthly' ? 'місячна' : 'річна'}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </section>
+            )}
 
             {message && (
                 <p style={{ textAlign: 'center', color: '#f8d9a6', fontSize: '1.1rem', marginTop: '1rem' }}>

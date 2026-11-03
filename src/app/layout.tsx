@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import HomeButton from "@/components/HomeButton";
+import AiWidget from "@/components/AiWidget";
+import { ToastProvider } from "@/components/Toast/ToastContext";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,9 +45,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <ScrollToTop />
-        <HomeButton />
+        <ToastProvider>
+          <ErrorBoundary fallbackTitle="Помилка на сторінці">
+            {children}
+          </ErrorBoundary>
+          <ScrollToTop />
+          <HomeButton />
+          <AiWidget /> {}
+        </ToastProvider>
       </body>
     </html>
   );

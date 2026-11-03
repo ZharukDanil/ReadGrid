@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function RegisterPage() {
     const router = useRouter();
-    const [form, setForm] = useState({ username: '', email: '', password: '' });
+    const [form, setForm] = useState({ username: '', email: '', password: '', confirmPassword: '' });
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -120,14 +120,19 @@ export default function RegisterPage() {
     }, []);
 
     const handleRegister = async () => {
-        if (!form.username || !form.email || !form.password) {
+        if (!form.username || !form.email || !form.password || !form.confirmPassword) {
             setMessage('❗ Заповніть усі поля');
+            return;
+        }
+        if (form.password !== form.confirmPassword) {
+            setMessage('❗ Паролі не збігаються');
             return;
         }
 
         setLoading(true);
         try {
-            await axios.post('/api/register', form);
+            const { confirmPassword, ...payload } = form;
+            await axios.post('/api/register', payload);
             setMessage('✅ Реєстрація успішна!');
             setTimeout(() => router.push('/login'), 1500);
         } catch (err: any) {
@@ -355,6 +360,45 @@ export default function RegisterPage() {
                             }}
                         />
                     </div>
+                    {/* Підтвердження пароля */}
+                    <div>
+                        <label style={{
+                            display: 'block',
+                            color: '#d8c3a5',
+                            fontSize: '0.9rem',
+                            fontWeight: 500,
+                            marginBottom: '0.5rem',
+                            marginLeft: '0.25rem',
+                        }}>
+                            🔒 Підтвердіть пароль
+                        </label>
+                        <input
+                            placeholder="Повторіть пароль"
+                            type="password"
+                            value={form.confirmPassword}
+                            onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+                            style={{
+                                width: '100%',
+                                padding: '0.9rem 1.2rem',
+                                background: 'rgba(46, 38, 33, 0.6)',
+                                border: '2px solid rgba(112, 84, 68, 0.3)',
+                                borderRadius: '12px',
+                                color: '#f8d9a6',
+                                fontSize: '1rem',
+                                outline: 'none',
+                                transition: 'all 0.3s ease',
+                                boxSizing: 'border-box',
+                            }}
+                            onFocus={(e) => {
+                                e.currentTarget.style.borderColor = 'rgba(248, 217, 166, 0.6)';
+                                e.currentTarget.style.background = 'rgba(46, 38, 33, 0.8)';
+                            }}
+                            onBlur={(e) => {
+                                e.currentTarget.style.borderColor = 'rgba(112, 84, 68, 0.3)';
+                                e.currentTarget.style.background = 'rgba(46, 38, 33, 0.6)';
+                            }}
+                        />
+                    </div>
                 </div>
 
                 {/* Кнопка реєстрації */}
@@ -440,10 +484,10 @@ export default function RegisterPage() {
                                 ? 'rgba(255, 193, 7, 0.1)'
                                 : 'rgba(255, 99, 99, 0.1)',
                         border: `1px solid ${message.includes('✅')
-                                ? 'rgba(168, 230, 161, 0.3)'
-                                : message.includes('❗')
-                                    ? 'rgba(255, 193, 7, 0.3)'
-                                    : 'rgba(255, 99, 99, 0.3)'
+                            ? 'rgba(168, 230, 161, 0.3)'
+                            : message.includes('❗')
+                                ? 'rgba(255, 193, 7, 0.3)'
+                                : 'rgba(255, 99, 99, 0.3)'
                             }`,
                         color: message.includes('✅')
                             ? '#a8e6a1'

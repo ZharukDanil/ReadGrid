@@ -51,7 +51,6 @@ export async function POST(req: NextRequest) {
 
         console.log('🔍 Base URL:', baseUrl);
 
-        // 🔥 ВАЖЛИВО: returnUrl - це API endpoint, а не сторінка!
         const returnUrl = `${baseUrl}/api/payment/return`;
         const serviceUrl = `${baseUrl}/api/payment/callback`;
 

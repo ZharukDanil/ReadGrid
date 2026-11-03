@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import WebBackground from '@/components/WebBackground';
+import { useToast } from '@/components/Toast/ToastContext';
 
 interface DecodedToken {
   userId?: string;
@@ -54,6 +55,12 @@ export default function ProfilePage() {
   const [premiumUntil, setPremiumUntil] = useState<string | null>(null);
   const [cancelling, setCancelling] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState(0);
+  const [deletePassword, setDeletePassword] = useState('');
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const { showToast } = useToast();
 
   function parseJwtPayload(token: string): DecodedToken | null {
     try {
@@ -159,20 +166,24 @@ export default function ProfilePage() {
   const handleSave = async () => {
     if (!userId) return;
     if (!username || username.length < 3) {
-      setMessage('Ім\'я має бути принаймні 3 символи');
+      showToast('Ім\'я має бути принаймні 3 символи', 'error');
       return;
     }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setMessage('Невірний формат email');
+      showToast('Невірний формат email', 'error');
       return;
     }
     if (password && password.length < 6) {
-      setMessage('Пароль має бути мінімум 6 символів');
+      showToast('Пароль має бути мінімум 6 символів', 'error');
+      return;
+    }
+    if (password && !currentPassword) {
+      showToast('Для зміни пароля необхідно ввести поточний пароль', 'error');
       return;
     }
 
     setLoading(true);
-    setMessage('⏳ Збереження...');
+    
     try {
       const token = localStorage.getItem('readgrid_token');
       const res = await fetch(`/api/users/${userId}`, {
@@ -181,7 +192,7 @@ export default function ProfilePage() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, email, password, currentPassword }),
       });
 
       const bodyText = await res.text();
@@ -189,12 +200,17 @@ export default function ProfilePage() {
       try {
         data = JSON.parse(bodyText);
       } catch {
-        console.error('Non-JSON response from /api/users/:', bodyText);
-        throw new Error('Сервер повернув неочікувану відповідь');
+        showToast('Сервер повернув неочікувану відповідь', 'error');
+        setLoading(false);
+        return;
       }
 
       if (!res.ok) {
-        throw new Error(data.message || 'Помилка при оновленні профілю');
+        showToast(data.message || 'Помилка при оновленні профілю', 'error');
+        setPassword('');
+        setCurrentPassword('');
+        setLoading(false);
+        return;
       }
 
       if (data.token) {
@@ -202,8 +218,9 @@ export default function ProfilePage() {
         window.dispatchEvent(new Event('storage'));
       }
 
-      setMessage('✅ Профіль успішно оновлено!');
+      showToast('Профіль успішно оновлено!', 'success');
       setPassword('');
+      setCurrentPassword('');
       setOriginalData({ username, email });
 
       if (userData) {
@@ -211,7 +228,7 @@ export default function ProfilePage() {
       }
     } catch (err: any) {
       console.error('handleSave error:', err);
-      setMessage(err.message || '❌ Помилка при оновленні профілю');
+      showToast('Помилка з\'єднання з сервером', 'error');
     } finally {
       setLoading(false);
     }
@@ -222,7 +239,8 @@ export default function ProfilePage() {
     setUsername(originalData.username);
     setEmail(originalData.email);
     setPassword('');
-    setMessage('↩ Зміни скинуто');
+    setCurrentPassword('');
+    showToast('Зміни скинуто', 'success');
   };
 
   const handleDeleteComment = async (commentId: string) => {
@@ -238,9 +256,9 @@ export default function ProfilePage() {
       if (!res.ok) throw new Error('Failed to delete');
 
       setComments(comments.filter(c => c._id !== commentId));
-      setMessage('✅ Коментар видалено');
+      showToast('Коментар видалено', 'success');
     } catch (err) {
-      setMessage('❌ Помилка при видаленні коментаря');
+      showToast('Помилка при видаленні коментаря', 'error');
     }
   };
 
@@ -250,7 +268,6 @@ export default function ProfilePage() {
     }
 
     setCancelling(true);
-    setMessage('⏳ Скасування підписки...');
 
     const token = localStorage.getItem('readgrid_token');
 
@@ -266,7 +283,7 @@ export default function ProfilePage() {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage('✅ Підписку успішно скасовано');
+        showToast('Підписку успішно скасовано', 'success');
         setIsPremium(false);
         setPremiumUntil(null);
 
@@ -276,12 +293,48 @@ export default function ProfilePage() {
 
         window.dispatchEvent(new Event('storage'));
       } else {
-        setMessage(`❌ ${data.message || 'Помилка скасування підписки'}`);
+        showToast(data.message || 'Помилка скасування підписки', 'error');
       }
     } catch (error) {
-      setMessage('❌ Помилка з\'єднання з сервером');
+      showToast('Помилка з\'єднання з сервером', 'error');
     } finally {
       setCancelling(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!userId || !deletePassword) return;
+
+    setDeleting(true);
+
+    const token = localStorage.getItem('readgrid_token');
+
+    try {
+      const res = await fetch(`/api/users/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ password: deletePassword }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        showToast(data.message || 'Не вдалося видалити акаунт', 'error');
+        setDeleting(false);
+        return;
+      }
+
+      showToast('Акаунт видалено', 'success');
+      setTimeout(() => {
+        localStorage.removeItem('readgrid_token');
+        window.location.href = '/';
+      }, 1000);
+    } catch {
+      showToast('Помилка з\'єднання з сервером', 'error');
+      setDeleting(false);
     }
   };
 
@@ -443,7 +496,7 @@ export default function ProfilePage() {
                   height: 84,
                   borderRadius: '50%',
                   background: 'radial-gradient(circle at 35% 30%, #6b4e38 0%, #4a3527 55%, #35261b 100%)',
-                  border: role === 'admin' ? '2.5px solid #d4a23b' : '2.5px solid #a3805f',
+                  border: role === 'superadmin' ? '2.5px solid #ffd700' : role === 'admin' ? '2.5px solid #d4a23b' : '2.5px solid #a3805f',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -451,9 +504,11 @@ export default function ProfilePage() {
                   fontWeight: 700,
                   color: '#fdeecb',
                   textShadow: '0 1px 3px rgba(0,0,0,0.6)',
-                  boxShadow: role === 'admin'
-                    ? '0 0 18px rgba(212,162,59,0.5), 0 6px 14px rgba(0,0,0,0.5), inset 0 2px 6px rgba(0,0,0,0.3)'
-                    : '0 6px 14px rgba(0,0,0,0.5), inset 0 2px 6px rgba(0,0,0,0.3)',
+                  boxShadow: role === 'superadmin'
+                    ? '0 0 22px rgba(255,215,0,0.6), 0 6px 14px rgba(0,0,0,0.5), inset 0 2px 6px rgba(0,0,0,0.3)'
+                    : role === 'admin'
+                      ? '0 0 18px rgba(212,162,59,0.5), 0 6px 14px rgba(0,0,0,0.5), inset 0 2px 6px rgba(0,0,0,0.3)'
+                      : '0 6px 14px rgba(0,0,0,0.5), inset 0 2px 6px rgba(0,0,0,0.3)',
                   marginBottom: '0.9rem',
                 }}
               >
@@ -471,12 +526,12 @@ export default function ProfilePage() {
                   fontWeight: 700,
                   letterSpacing: '0.5px',
                   textTransform: 'uppercase',
-                  color: role === 'admin' ? '#d4a23b' : '#caa98a',
-                  background: role === 'admin' ? 'rgba(212,162,59,0.15)' : 'rgba(112,84,68,0.2)',
-                  border: role === 'admin' ? '1px solid rgba(212,162,59,0.35)' : '1px solid rgba(112,84,68,0.4)',
+                  color: role === 'superadmin' ? '#ffd700' : role === 'admin' ? '#d4a23b' : '#caa98a',
+                  background: role === 'superadmin' ? 'rgba(255,215,0,0.15)' : role === 'admin' ? 'rgba(212,162,59,0.15)' : 'rgba(112,84,68,0.2)',
+                  border: role === 'superadmin' ? '1px solid rgba(255,215,0,0.35)' : role === 'admin' ? '1px solid rgba(212,162,59,0.35)' : '1px solid rgba(112,84,68,0.4)',
                 }}
               >
-                {role === 'admin' ? '⚡ Адмін' : '👤 Користувач'}
+                {role === 'superadmin' ? '👑 СУПЕРАДМІН' : role === 'admin' ? '⚡ АДМІН' : '👤 КОРИСТУВАЧ'}
               </span>
 
               <div
@@ -550,6 +605,16 @@ export default function ProfilePage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
+                />
+                <input
+                  placeholder="Поточний пароль (потрібен для зміни пароля)"
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  disabled={loading}
+                  style={{
+                    borderColor: password && !currentPassword ? 'rgba(255,107,107,0.5)' : undefined,
+                  }}
                 />
                 <input
                   placeholder="Новий пароль (необов’язково)"
@@ -788,6 +853,139 @@ export default function ProfilePage() {
                 </p>
               )}
             </div>
+          </div>
+
+          {/* --- Небезпечна зона --- */}
+          <div
+            style={{
+              marginTop: '1.5rem',
+              background: 'linear-gradient(135deg, rgba(139,69,69,0.12) 0%, rgba(90,31,31,0.08) 100%)',
+              border: '1px solid rgba(255,107,107,0.25)',
+              borderRadius: '18px',
+              padding: '1.75rem 2.2rem',
+              position: 'relative',
+              zIndex: 1,
+              width: '100%',
+              boxSizing: 'border-box',
+              boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
+            }}
+          >
+            <h3 style={{ margin: '0 0 0.5rem', color: '#ff9999', fontSize: '1.15rem' }}>
+              ⚠️ Небезпечна зона
+            </h3>
+            <p style={{ margin: '0 0 1.2rem', color: '#c9a96f', fontSize: '0.92rem', lineHeight: 1.5 }}>
+              Видалення акаунта незворотне. Будуть видалені ваш профіль, обране,
+              коментарі, оцінки та реакції на коментарі інших користувачів.
+            </p>
+
+            {!deleteConfirmOpen ? (
+              <button
+                onClick={() => setDeleteConfirmOpen(true)}
+                style={{
+                  padding: '13px 24px',
+                  background: 'linear-gradient(135deg, #7a2e2e 0%, #5a1f1f 100%)',
+                  color: '#ffd9d9',
+                  border: '1px solid rgba(255,107,107,0.4)',
+                  borderRadius: '10px',
+                  cursor: 'pointer',
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  letterSpacing: '0.3px',
+                  transition: 'all 0.25s ease',
+                  boxShadow: '0 4px 14px rgba(122,46,46,0.3)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, #9a3a3a 0%, #7a2e2e 100%)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(255,107,107,0.45), 0 4px 14px rgba(122,46,46,0.4)';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, #7a2e2e 0%, #5a1f1f 100%)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(122,46,46,0.3)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                🗑️ Видалити акаунт назавжди
+              </button>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', maxWidth: '380px' }}>
+                <input
+                  type="password"
+                  placeholder="Введіть пароль для підтвердження"
+                  value={deletePassword}
+                  onChange={(e) => setDeletePassword(e.target.value)}
+                  disabled={deleting}
+                  style={{
+                    border: '1px solid rgba(255,107,107,0.3)',
+                  }}
+                />
+                {deleteError && (
+                  <p style={{ margin: 0, color: '#ff9999', fontSize: '0.85rem' }}>{deleteError}</p>
+                )}
+                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                  <button
+                    onClick={handleDeleteAccount}
+                    disabled={deleting || !deletePassword}
+                    style={{
+                      padding: '12px 22px',
+                      background: !deletePassword
+                        ? 'rgba(122,46,46,0.3)'
+                        : 'linear-gradient(135deg, #9a3a3a 0%, #6b2424 100%)',
+                      color: !deletePassword ? '#a58080' : '#ffe8e8',
+                      border: '1px solid rgba(255,107,107,0.5)',
+                      borderRadius: '10px',
+                      cursor: deleting || !deletePassword ? 'not-allowed' : 'pointer',
+                      fontSize: '14.5px',
+                      fontWeight: 700,
+                      letterSpacing: '0.3px',
+                      transition: 'all 0.25s ease',
+                      boxShadow: !deletePassword ? 'none' : '0 4px 14px rgba(122,46,46,0.4)',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (deleting || !deletePassword) return;
+                      e.currentTarget.style.boxShadow = '0 0 18px rgba(255,107,107,0.5), 0 4px 14px rgba(122,46,46,0.5)';
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (deleting || !deletePassword) return;
+                      e.currentTarget.style.boxShadow = '0 4px 14px rgba(122,46,46,0.4)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                  >
+                    {deleting ? '⏳ Видалення...' : '⚠️ Так, видалити назавжди'}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setDeleteConfirmOpen(false);
+                      setDeletePassword('');
+                      setDeleteError('');
+                    }}
+                    disabled={deleting}
+                    style={{
+                      padding: '12px 20px',
+                      background: 'rgba(42,30,26,0.6)',
+                      color: '#e0c9a6',
+                      border: '1px solid rgba(165,139,111,0.5)',
+                      borderRadius: '10px',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(112,84,68,0.5)';
+                      e.currentTarget.style.color = '#f8d9a6';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(42,30,26,0.6)';
+                      e.currentTarget.style.color = '#e0c9a6';
+                    }}
+                  >
+                    Скасувати
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {message && (

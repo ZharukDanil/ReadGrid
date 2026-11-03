@@ -7,6 +7,8 @@ export interface IComment extends Document {
   content: string;
   rating?: number;
   hidden?: boolean;
+  parentCommentId?: mongoose.Types.ObjectId | null;
+  replyToUsername?: string | null; 
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -18,9 +20,10 @@ const CommentSchema = new Schema<IComment>(
     content: { type: String, required: true, minlength: 3, maxlength: 1000 },
     rating: { type: Number, min: 1, max: 5, required: false },
     hidden: { type: Boolean, default: false },
+    parentCommentId: { type: Schema.Types.ObjectId, ref: 'Comment', default: null },
+    replyToUsername: { type: String, default: null },
   },
   { timestamps: true }
 );
 
-// 🔥 Правильний експорт з перевіркою існуючої моделі
 export default mongoose.models.Comment || mongoose.model<IComment>('Comment', CommentSchema);

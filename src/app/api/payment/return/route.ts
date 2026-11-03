@@ -1,7 +1,7 @@
 // src/app/api/payment/return/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
-// 🔥 DEV режим: якщо true, будь-яка оплата вважається успішною
+// DEV режим: якщо true, будь-яка оплата вважається успішною
 const DEV_MODE = process.env.NODE_ENV === 'development';
 
 export async function POST(req: NextRequest) {
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     const host = req.headers.get('host') || 'localhost:3000';
     const protocol = host.includes('localhost') ? 'http' : 'https';
     
-    // 🔥 В DEV режимі вважаємо оплату успішною, якщо reasonCode = 1122 (тестовий шлюз)
+    // В DEV режимі вважаємо оплату успішною, якщо reasonCode = 1122 (тестовий шлюз)
     let isSuccess = transactionStatus === 'Approved';
     
     if (DEV_MODE && reasonCode === '1122') {
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       // Викликаємо callback вручну для оновлення користувача
       try {
         const callbackUrl = `${protocol}://${host}/api/payment/callback`;
-        // 🔥 НЕ надсилаємо merchantSignature з форми - callback сам перевірить підпис
+        // НЕ надсилаємо merchantSignature з форми - callback сам перевірить підпис
         const callbackData = {
           merchantAccount: formData.get('merchantAccount'),
           orderReference: orderReference,

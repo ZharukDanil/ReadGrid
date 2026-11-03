@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     await dbConnect();
     const { username, email, password } = await req.json();
 
-    // --- Валідація ---
+    // Валідація
     if (!username || !email || !password) {
       return NextResponse.json({ message: 'All fields are required' }, { status: 400 });
     }
@@ -18,13 +18,13 @@ export async function POST(req: Request) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ message: 'Invalid email format' }, { status: 400 });
     }
-    if (password.length < 6) {
-      return NextResponse.json({ message: 'Password must be at least 6 characters' }, { status: 400 });
+    if (password.length < 8) {
+      return NextResponse.json({ message: 'Password must be at least 8 characters' }, { status: 400 });
     }
 
     const normalizedEmail = email.toLowerCase();
 
-    // --- Перевірка унікальності ---
+    // Перевірка унікальності
     const existingEmail = await User.findOne({ email: normalizedEmail });
     if (existingEmail) {
       return NextResponse.json({ message: 'Email already registered' }, { status: 409 });
@@ -35,10 +35,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Username already taken' }, { status: 409 });
     }
 
-    // --- Хешування паролю ---
+    // Хешування паролю
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // --- Створення користувача ---
+    // Створення користувача
     const newUser = new User({
       username,
       email: normalizedEmail,

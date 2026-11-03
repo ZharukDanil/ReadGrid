@@ -3,9 +3,22 @@ import bcrypt from 'bcrypt';
 import { dbConnect } from '@/lib/dbConnect';
 import User from '@/models/User';
 import { signToken } from '@/lib/jwt';
+import { rateLimit, getClientIp } from '@/lib/rateLimit';
+
+// Заглушка, щоб час відповіді не видавав, чи існує такий email
+const DUMMY_HASH = bcrypt.hashSync('readgrid-dummy-password', 10);
 
 export async function POST(req: Request) {
   try {
+    const ip = getClientIp(req);
+    const { allowed, retryAfterMs } = rateLimit(`login:${ip}`, 10, 60_000);
+    if (!allowed) {
+      return NextResponse.json(
+        { message: `Забагато спроб входу. Спробуйте через ${Math.ceil(retryAfterMs / 1000)} сек.` },
+        { status: 429 }
+      );
+    }
+
     await dbConnect();
 
     const { email, password } = await req.json();
@@ -13,19 +26,24 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Missing fields' }, { status: 400 });
     }
 
-    const normalizedEmail = email.toLowerCase();
+    const normalizedEmail = String(email).trim().toLowerCase();
     const user = await User.findOne({ email: normalizedEmail });
-    if (!user) return NextResponse.json({ message: 'User not found' }, { status: 404 });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return NextResponse.json({ message: 'Authorization failed' }, { status: 401 });
+    const isMatch = await bcrypt.compare(password, user ? user.password : DUMMY_HASH);
+    if (!user || !isMatch) {
+      return NextResponse.json({ message: 'Authorization failed' }, { status: 401 });
+    }
 
-    // 🔥 Оновлюємо lastLogin
+    // Блокування перевіряємо лише після правильного пароля
+    if (user.isBlocked) {
+      return NextResponse.json({ message: 'Ваш обліковий запис заблоковано' }, { status: 403 });
+    }
+
     user.lastLogin = new Date();
     await user.save();
 
     const token = signToken({
-      userId: String(user._id), // 🩵 безпечне приведення
+      userId: String(user._id),
       username: user.username,
       role: user.role,
       email: user.email,

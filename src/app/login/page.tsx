@@ -281,16 +281,42 @@ export default function LoginPage() {
 
                     {/* Пароль */}
                     <div>
-                        <label style={{
-                            display: 'block',
-                            color: '#d8c3a5',
-                            fontSize: '0.9rem',
-                            fontWeight: 500,
+                        {/* Контейнер для вирівнювання заголовка та посилання по краях */}
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
                             marginBottom: '0.5rem',
-                            marginLeft: '0.25rem',
+                            paddingLeft: '0.25rem',
+                            paddingRight: '0.25rem'
                         }}>
-                            🔒 Пароль
-                        </label>
+                            <label style={{
+                                color: '#d8c3a5',
+                                fontSize: '0.9rem',
+                                fontWeight: 500,
+                            }}>
+                                🔒 Пароль
+                            </label>
+
+                            <Link
+                                href="/forgot-password"
+                                style={{
+                                    color: '#c9a96f',
+                                    fontSize: '0.9rem',
+                                    textDecoration: 'underline',
+                                    transition: 'color 0.3s ease', /* Плавна зміна кольору */
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.color = '#f8d9a6'; /* Колір при наведенні (можна змінити на #fff для максимальної яскравості) */
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.color = '#c9a96f'; /* Повертаємо початковий колір */
+                                }}
+                            >
+                                Забули пароль?
+                            </Link>
+                        </div>
+
                         <input
                             placeholder="Введіть пароль"
                             type="password"
@@ -402,10 +428,10 @@ export default function LoginPage() {
                                 ? 'rgba(255, 193, 7, 0.1)'
                                 : 'rgba(255, 99, 99, 0.1)',
                         border: `1px solid ${message.includes('✅')
-                                ? 'rgba(168, 230, 161, 0.3)'
-                                : message.includes('❗')
-                                    ? 'rgba(255, 193, 7, 0.3)'
-                                    : 'rgba(255, 99, 99, 0.3)'
+                            ? 'rgba(168, 230, 161, 0.3)'
+                            : message.includes('❗')
+                                ? 'rgba(255, 193, 7, 0.3)'
+                                : 'rgba(255, 99, 99, 0.3)'
                             }`,
                         color: message.includes('✅')
                             ? '#a8e6a1'

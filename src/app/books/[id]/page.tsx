@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import CommentsSection from '@/components/CommentsSection/CommentsSection';
@@ -34,8 +34,11 @@ export default function BookDetailsPage() {
     const [role, setRole] = useState("");
     const [isFavorite, setIsFavorite] = useState(false);
     const [isPremium, setIsPremium] = useState(false);
+    const [premiumChecked, setPremiumChecked] = useState(false); 
+    const [authChecked, setAuthChecked] = useState(false); 
     const [userId, setUserId] = useState<string | null>(null);
     const [copied, setCopied] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         const token = localStorage.getItem("readgrid_token");
@@ -49,12 +52,20 @@ export default function BookDetailsPage() {
                     setUserId(decoded.userId);
                     checkFavorite(token);
                     fetchUserPremiumStatus(decoded.userId, token);
+                    setAuthChecked(true);
                 } else {
                     localStorage.removeItem("readgrid_token");
+                    setPremiumChecked(true);
+                    setAuthChecked(true);
                 }
             } catch {
                 setIsAuthorized(false);
+                setPremiumChecked(true);
+                setAuthChecked(true);
             }
+        } else {
+            setPremiumChecked(true);
+            setAuthChecked(true);
         }
     }, []);
 
@@ -86,6 +97,8 @@ export default function BookDetailsPage() {
             }
         } catch (error) {
             console.error('Premium status error:', error);
+        } finally {
+            setPremiumChecked(true);
         }
     };
 
@@ -313,59 +326,124 @@ export default function BookDetailsPage() {
                     )}
 
                     <div style={{ marginTop: "2rem", display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        {isAuthorized ? (
-                            <>
-                                {book.isPremium && !isPremium ? (
-                                    <Link
-                                        href="/premium"
-                                        className="read-btn"
-                                        style={{
-                                            backgroundColor: "#d4a23b",
-                                            color: "#fff",
-                                            padding: "10px 18px",
-                                            borderRadius: "8px",
-                                            textDecoration: "none",
-                                            display: "inline-block",
-                                        }}
-                                    >
-                                        ⭐ Отримати Premium для завантаження
-                                    </Link>
-                                ) : (
-                                    <a
-                                        href={book.fileUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="read-btn"
-                                        style={{
-                                            backgroundColor: "#705444",
-                                            color: "#f8d9a6",
-                                            padding: "10px 18px",
-                                            borderRadius: "8px",
-                                        }}
-                                    >
-                                        📥 Завантажити книгу
-                                    </a>
-                                )}
 
-                                <button
-                                    onClick={toggleFavorite}
-                                    className="read-btn"
-                                    style={{
-                                        backgroundColor: isFavorite ? "#ff6b6b" : "#705444",
-                                        color: "#f8d9a6",
-                                        padding: "10px 18px",
-                                        borderRadius: "8px",
-                                    }}
-                                >
-                                    {isFavorite ? '💔 Видалити з обраного' : '❤️ Додати в обране'}
-                                </button>
-                            </>
+                        {/* 1. ГОЛОВНА КНОПКА */}
+                        <button
+                            onClick={async () => {
+                                const token = localStorage.getItem("readgrid_token");
+
+                                if (!token) {
+                                    router.push("/login");
+                                    return;
+                                }
+
+                                if (book.isPremium) {
+                                    try {
+                                        const res = await fetch(`/api/users/${userId}`, {
+                                            headers: { Authorization: `Bearer ${token}` },
+                                        });
+                                        if (res.ok) {
+                                            const data = await res.json();
+                                            if (!data.isPremium) {
+                                                router.push("/premium");
+                                                return;
+                                            }
+                                        }
+                                    } catch {
+                                        alert("Помилка перевірки статусу");
+                                        return;
+                                    }
+                                }
+
+                                try {
+                                    const res = await fetch(`/api/books/${id}/download`, {
+                                        headers: { Authorization: `Bearer ${token}` }
+                                    });
+                                    const data = await res.json();
+
+                                    if (!res.ok) {
+                                        alert(data.message || "Не вдалося отримати файл");
+                                        return;
+                                    }
+
+                                    const link = document.createElement('a');
+                                    link.href = data.fileUrl;
+                                    link.rel = 'noopener noreferrer';
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                } catch {
+                                    alert("Помилка мережі");
+                                }
+                            }}
+                            className="read-btn"
+                            style={{
+                                // Красивий градієнт для преміум, звичайний колір для інших
+                                background: book.isPremium
+                                    ? "linear-gradient(135deg, #d4a23b 0%, #f4d03f 100%)"
+                                    : "#705444",
+                                color: book.isPremium ? "#3d2817" : "#f8d9a6",
+                                fontWeight: book.isPremium ? "bold" : "normal",
+                                padding: "10px 18px",
+                                borderRadius: "8px",
+                                border: book.isPremium ? "2px solid #b8860b" : "none",
+                                cursor: "pointer",
+                                minWidth: "260px",
+                                height: "42px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "8px",
+                                boxShadow: book.isPremium ? "0 4px 15px rgba(212, 162, 59, 0.4)" : "none",
+                                transition: "all 0.3s ease",
+                                textShadow: book.isPremium ? "0 1px 2px rgba(255,255,255,0.3)" : "none",
+                            }}
+                            onMouseEnter={(e) => {
+                                if (book.isPremium) {
+                                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(212, 162, 59, 0.6)";
+                                    e.currentTarget.style.transform = "translateY(-2px)";
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                if (book.isPremium) {
+                                    e.currentTarget.style.boxShadow = "0 4px 15px rgba(212, 162, 59, 0.4)";
+                                    e.currentTarget.style.transform = "translateY(0)";
+                                }
+                            }}
+                        >
+                            <span>📥</span>
+                            <span>{book.isPremium ? "Завантажити (Premium)" : "Завантажити книгу"}</span>
+                        </button>
+
+                        {/* 2. КНОПКА ОБРАНОГО */}
+                        {isAuthorized ? (
+                            <button
+                                onClick={toggleFavorite}
+                                className="read-btn"
+                                style={{
+                                    backgroundColor: isFavorite ? "#ff6b6b" : "#705444",
+                                    color: "#f8d9a6",
+                                    padding: "10px 18px",
+                                    borderRadius: "8px",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    minWidth: "200px",
+                                    height: "42px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    gap: "8px",
+                                    transition: "all 0.3s ease",
+                                }}
+                            >
+                                <span>{isFavorite ? '' : '❤️'}</span>
+                                <span>{isFavorite ? 'Видалити з обраного' : 'Додати в обране'}</span>
+                            </button>
                         ) : (
-                            <p style={{ color: "#caa98a", fontStyle: "italic" }}>
-                                🔒 Увійдіть, щоб завантажити файл та додати в обране
-                            </p>
+                            <div style={{ minWidth: "200px", height: "42px" }} />
                         )}
 
+                        {/* 3. КНОПКА ПОДІЛИТИСЯ */}
                         <button
                             onClick={handleShare}
                             className="read-btn"
@@ -374,10 +452,21 @@ export default function BookDetailsPage() {
                                 color: "#f8d9a6",
                                 padding: "10px 18px",
                                 borderRadius: "8px",
+                                border: "none",
+                                cursor: "pointer",
+                                minWidth: "160px",
+                                height: "42px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "8px",
+                                transition: "all 0.3s ease",
                             }}
                         >
-                            {copied ? '✅ Скопійовано!' : '🔗 Поділитися'}
+                            <span>{copied ? '✅' : '🔗'}</span>
+                            <span>{copied ? 'Скопійовано!' : 'Поділитися'}</span>
                         </button>
+
                     </div>
                 </div>
             </div>

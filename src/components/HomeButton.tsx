@@ -11,7 +11,7 @@ export default function HomeButton() {
     // Плавна поява кнопки відразу після монтування компонента
     const readyTimer = setTimeout(() => setReady(true), 50);
     return () => clearTimeout(readyTimer);
-  }, [pathname]); // перезапускаємо при зміні сторінки, якщо потрібно
+  }, [pathname]); 
 
   if (pathname === '/') return null;
 

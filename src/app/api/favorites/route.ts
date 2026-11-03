@@ -18,7 +18,10 @@ export async function GET(req: Request) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const user = await User.findById(payload.userId).populate('favorites');
+    const user = await User.findById(payload.userId).populate({
+      path: 'favorites',
+      select: '-fileUrl',
+    });
     
     if (!user) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 });

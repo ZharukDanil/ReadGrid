@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import FavoriteTab from '@/components/FavoriteTab';
 import FadeIn from '@/components/FadeIn';
@@ -46,20 +46,45 @@ function decodeJWT(token: string): DecodedToken | null {
 
 export default function HomePage() {
   const [books, setBooks] = useState<Book[]>([]);
-  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
+  const [booksLoading, setBooksLoading] = useState(true);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [genreFilter, setGenreFilter] = useState('');
   const [yearFilter, setYearFilter] = useState('');
+
+  // Значення, що реально йдуть у запит (з затримкою відносно того, що вводить користувач)
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [debouncedGenre, setDebouncedGenre] = useState('');
+  const [debouncedYear, setDebouncedYear] = useState('');
+
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
-  const [isPremium, setIsPremium] = useState(false); // 🆕
+  const [isPremium, setIsPremium] = useState(false);
   const [premiumChecked, setPremiumChecked] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const booksPerPage = 6;
+
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounce: чекаємо 400мс тиші після останнього натискання, перш ніж слати запит
+  useEffect(() => {
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+      setDebouncedGenre(genreFilter);
+      setDebouncedYear(yearFilter);
+      setCurrentPage(1);
+    }, 400);
+
+    return () => {
+      if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    };
+  }, [searchTerm, genreFilter, yearFilter]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -102,7 +127,6 @@ export default function HomePage() {
     }
   };
 
-  // 🆕 Перевірка Premium статусу
   const fetchUserPremiumStatus = async (userId: string, token: string) => {
     try {
       const res = await fetch(`/api/users/${userId}`, {
@@ -118,6 +142,7 @@ export default function HomePage() {
       setPremiumChecked(true);
     }
   };
+
 
   const fetchFavorites = async (token: string) => {
     try {
@@ -168,61 +193,79 @@ export default function HomePage() {
     }
   };
 
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
+
+  const handleDownload = async (bookId: string) => {
+    const token = localStorage.getItem('readgrid_token');
+    if (!token) return;
+
+    setDownloadingId(bookId);
+    try {
+      const res = await fetch(`/api/books/${bookId}/download`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || 'Не вдалося отримати файл');
+        return;
+      }
+
+      const link = document.createElement('a');
+      link.href = data.fileUrl;
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      alert('Помилка мережі');
+    } finally {
+      setDownloadingId(null);
+    }
+  };
+
+  // Головна функція: запитує з сервера ТІЛЬКИ потрібну сторінку з урахуванням фільтрів
+  const fetchBooks = useCallback(async () => {
+    setBooksLoading(true);
+    try {
+      const params = new URLSearchParams();
+      params.set('page', String(currentPage));
+      params.set('limit', String(booksPerPage));
+      if (debouncedSearch) params.set('search', debouncedSearch);
+      if (debouncedGenre) params.set('genre', debouncedGenre);
+      if (debouncedYear) params.set('year', debouncedYear);
+
+      const timestamp = new Date().getTime();
+      params.set('t', String(timestamp));
+
+      const res = await fetch(`/api/books?${params.toString()}`, { cache: 'no-store' });
+      const data = await res.json();
+
+      setBooks(data.books || []);
+      setTotalPages(data.totalPages || 1);
+    } catch (error) {
+      console.error('Fetch books error:', error);
+      setBooks([]);
+      setTotalPages(1);
+    } finally {
+      setBooksLoading(false);
+    }
+  }, [currentPage, debouncedSearch, debouncedGenre, debouncedYear]);
+
   useEffect(() => {
     loadUser();
-
-    const timestamp = new Date().getTime();
-    fetch(`/api/books?t=${timestamp}`, { cache: 'no-store' })
-      .then(res => res.json())
-      .then(data => {
-        const booksData = Array.isArray(data) ? data : data.books || [];
-        setBooks(booksData);
-        setFilteredBooks(booksData);
-      })
-      .catch(() => {
-        setBooks([]);
-        setFilteredBooks([]);
-      });
   }, []);
+
+  // Перезапитуємо книги щоразу, коли міняється сторінка або (з затримкою) фільтри
+  useEffect(() => {
+    fetchBooks();
+  }, [fetchBooks]);
 
   useEffect(() => {
     const handleStorage = () => loadUser();
     window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
   }, []);
-
-  const handleSearch = () => {
-    const filtered = books.filter(book => {
-      // 🆕 Фільтр premium книг
-      // if (book.isPremium && !isPremium) return false;
-
-      const matchesSearch =
-        book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesGenre = genreFilter
-        ? book.genre.toLowerCase().includes(genreFilter.toLowerCase())
-        : true;
-
-      const matchesYear = yearFilter
-        ? book.year.toString() === yearFilter
-        : true;
-
-      return matchesSearch && matchesGenre && matchesYear;
-    });
-
-    setFilteredBooks(filtered);
-    setCurrentPage(1);
-  };
-
-  useEffect(() => {
-    handleSearch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm, genreFilter, yearFilter,]); // 🆕 додано isPremium
-
-  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
-  const startIndex = (currentPage - 1) * booksPerPage;
-  const currentBooks = filteredBooks.slice(startIndex, startIndex + booksPerPage);
 
   const handleLogout = () => {
     localStorage.removeItem('readgrid_token');
@@ -275,8 +318,8 @@ export default function HomePage() {
         }}
       />
 
-{/* Навігація */}
-<nav
+      {/* Навігація */}
+      <nav
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -286,6 +329,8 @@ export default function HomePage() {
           marginBottom: "2rem",
           borderBottom: "1px solid #705444",
           paddingBottom: "1rem",
+          flexWrap: "wrap",
+          gap: "1rem",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -346,9 +391,18 @@ export default function HomePage() {
                       )}
                     </>
                   )}
-                  {role === 'admin' && (
-                    <Link href="/admin/books" className="nav-btn" style={{ backgroundColor: "#c47f5f", color: "#fff8f2" }}>
-                      🛠️ Admin Books Panel
+                  {(role === 'admin' || role === 'superadmin') && (
+                    <Link
+                      href="/admin"
+                      className="nav-btn"
+                      style={{
+                        backgroundColor: role === 'superadmin' ? 'transparent' : "#c47f5f",
+                        color: role === 'superadmin' ? '#ffd700' : "#fff8f2",
+                        border: role === 'superadmin' ? '2px solid #ffd700' : 'none',
+                        fontWeight: role === 'superadmin' ? '700' : '600',
+                      }}
+                    >
+                      {role === 'superadmin' ? '👑 Super Admin' : '🛠️ Admin Panel'}
                     </Link>
                   )}
                   <button onClick={handleLogout} className="nav-btn delete">🚪 Вийти</button>
@@ -377,7 +431,7 @@ export default function HomePage() {
         )}
       </div>
 
-      {/* Фільтри */}
+      {/* Фільтри — тепер відправляються на сервер із затримкою (debounce) */}
       <div
         style={{
           display: "grid",
@@ -396,7 +450,7 @@ export default function HomePage() {
         />
         <input
           type="text"
-          placeholder="Жанр (наприклад: роман)"
+          placeholder="Жанр (наприклад: фентезі)"
           value={genreFilter}
           onChange={(e) => setGenreFilter(e.target.value)}
         />
@@ -412,12 +466,13 @@ export default function HomePage() {
 
       {/* Книги */}
       <section className="book-grid">
-        {currentBooks.length === 0 ? (
+        {booksLoading ? (
+          <p className="subtitle">⏳ Завантаження...</p>
+        ) : books.length === 0 ? (
           <p className="subtitle">📚 Нічого не знайдено</p>
         ) : (
-          currentBooks.map(book => (
+          books.map(book => (
             <div key={book._id} className="book-card" style={{ position: 'relative' }}>
-              {/* 🆕 Мітка Premium */}
               {book.isPremium && (
                 <div
                   style={{
@@ -438,7 +493,6 @@ export default function HomePage() {
                 </div>
               )}
 
-              {/* Кнопка обраного */}
               {isAuthorized && (
                 <button
                   onClick={(e) => {
@@ -552,33 +606,74 @@ export default function HomePage() {
                 color: "#b09378",
                 fontSize: "0.95rem",
                 lineHeight: "1.5",
-                marginBottom: "1rem",
+                marginBottom: "0.5rem",
                 fontStyle: "italic",
+                minHeight: "2.9rem",         
+                display: "-webkit-box",
+                WebkitLineClamp: 2,         
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
               }}>
                 {book.description?.slice(0, 80)}...
               </p>
 
-              <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "1rem" }}>
-                <Link href={`/books/${book._id}`} className="read-btn">📖 Детальніше</Link>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                <Link
+                  href={`/books/${book._id}`}
+                  className="read-btn"
+                  style={{ textAlign: 'center' }}
+                >
+                  📖 Детальніше
+                </Link>
                 {isAuthorized ? (
                   book.isPremium && !isPremium ? (
-                    <Link href="/premium" className="read-btn" style={{ background: '#d4a23b' }}>
-                      ⭐ Отримати Premium
+                    <Link
+                      href="/premium"
+                      className="read-btn"
+                      style={{
+                        background: '#d4a23b',
+                        textAlign: 'center',
+                        whiteSpace: 'nowrap',
+                        fontSize: '0.9rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      ⭐ Premium
                     </Link>
                   ) : (
-                    <a href={book.fileUrl} target="_blank" rel="noopener noreferrer" className="read-btn">📥 Завантажити</a>
+                    <button
+                      onClick={() => handleDownload(book._id)}
+                      disabled={downloadingId === book._id}
+                      className="read-btn"
+                      style={{
+                        border: 'none',
+                        cursor: downloadingId === book._id ? 'not-allowed' : 'pointer',
+                        opacity: downloadingId === book._id ? 0.6 : 1,
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {downloadingId === book._id ? '⏳ Завантаж...' : '📥 Завантажити'}
+                    </button>
                   )
                 ) : (
-                  <p style={{
-                    color: "#8b6b57",
-                    fontStyle: "italic",
-                    fontSize: "0.9rem",
-                    padding: "0.5rem",
-                    backgroundColor: "rgba(112,84,68,0.1)",
-                    borderRadius: "6px",
-                  }}>
-                    🔒 Увійдіть, щоб скачати
-                  </p>
+                  <Link
+                    href="/login"
+                    className="read-btn"
+                    style={{
+                      backgroundColor: 'rgba(112,84,68,0.35)',
+                      color: '#e0c9a6',
+                      border: '1px solid rgba(202,169,138,0.4)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    🔒 Увійдіть
+                  </Link>
                 )}
               </div>
             </div>
@@ -586,9 +681,9 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* Пагінація */}
+      {/* Пагінація — номери сторінок тепер приходять із сервера (totalPages) */}
       {totalPages > 1 && (
-        <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center", gap: "10px" }}>
+        <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center", gap: "10px", flexWrap: "wrap" }}>
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
@@ -614,13 +709,47 @@ export default function HomePage() {
           marginTop: "4rem",
           textAlign: "center",
           color: "#a07e65",
-          borderTop: "1px solid #705444",
+          borderTop: "1px solid transparent",
+          borderImage:
+            "linear-gradient(90deg, transparent, #705444 20%, #caa98a 50%, #705444 80%, transparent) 1",
           paddingTop: "1rem",
           width: "70%",
           maxWidth: "none",
+          position: "relative",
         }}
       >
-        <p>© 2025 ReadGrid — Інтелектуальна система електронної бібліотеки</p>
+        <div
+          style={{
+            position: "absolute",
+            top: "-1px",
+            left: "15%",
+            width: "70%",
+            height: "1px",
+            background: "#caa98a",
+            opacity: 0.25,
+            filter: "blur(4px)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <p
+          style={{
+            margin: 0,
+            transition: "all 0.3s ease",
+            cursor: "default",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "#caa98a";
+            e.currentTarget.style.textShadow =
+              "0 0 10px rgba(202,169,138,0.35)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "#a07e65";
+            e.currentTarget.style.textShadow = "none";
+          }}
+        >
+          © 2025 ReadGrid — Інтелектуальна система електронної бібліотеки
+        </p>
       </footer>
     </div>
   );
