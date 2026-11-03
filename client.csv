@@ -1,0 +1,543 @@
+11,3,77,1,11,"decodeJWT@23-33@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","decodeJWT","decodeJWT ( token )",23,33
+4,1,31,1,4,"onInputFocus@46-49@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","onInputFocus","onInputFocus ( e )",46,49
+4,1,31,1,4,"onInputBlur@50-53@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","onInputBlur","onInputBlur ( e )",50,53
+1,1,5,0,1,"(anonymous)@69-69@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",69,69
+1,1,5,0,1,"(anonymous)@69-69@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",69,69
+1,1,5,0,1,"(anonymous)@102-102@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",102,102
+1,1,5,0,1,"(anonymous)@102-102@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",102,102
+19,7,114,0,22,"(anonymous)@158-179@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",158,179
+1,2,12,0,1,"getToken@181-181@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","getToken","getToken ( )",181,181
+18,5,111,0,18,"fetchBooks@183-200@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","fetchBooks","fetchBooks ( )",183,200
+5,2,12,0,5,"(anonymous)@202-206@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",202,206
+1,1,4,1,1,"(anonymous)@224-224@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",224,224
+18,1,82,0,18,"resetForm@208-225@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","resetForm","resetForm ( )",208,225
+13,7,111,0,14,"prepareBody@227-240@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","prepareBody","prepareBody ( )",227,240
+28,6,147,0,28,"addBook@242-269@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","addBook","addBook ( )",242,269
+28,6,150,1,28,"updateBook@271-298@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","updateBook","updateBook ( id )",271,298
+24,6,134,1,24,"performDelete@300-323@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","performDelete","performDelete ( id )",300,323
+3,1,13,1,3,"requestDelete@325-327@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","requestDelete","requestDelete ( id )",325,327
+1,1,4,1,1,"(anonymous)@354-354@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",354,354
+35,7,183,1,39,"startEditing@329-367@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","startEditing","startEditing ( book )",329,367
+4,1,12,0,4,"(anonymous)@378-381@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",378,381
+3,2,15,0,3,"(anonymous)@383-385@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",383,385
+5,2,35,0,11,"(anonymous)@376-386@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",376,386
+4,4,63,1,4,"(anonymous)@390-393@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",390,393
+5,1,12,0,8,"(anonymous)@388-395@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",388,395
+1,1,11,1,1,"paginate@402-402@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","paginate","paginate ( pageNumber )",402,402
+4,1,22,0,4,"(anonymous)@424-427@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",424,427
+45,17,474,0,52,"draw@443-494@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","draw","draw ( )",443,494
+4,1,24,1,4,"onMouseMove@498-501@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","onMouseMove","onMouseMove ( e )",498,501
+4,1,17,0,4,"(anonymous)@504-507@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",504,507
+35,3,323,0,105,"(anonymous)@404-508@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",404,508
+1,1,4,1,1,"(anonymous)@518-518@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",518,518
+1,1,16,1,1,"(anonymous)@558-558@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",558,558
+1,1,16,1,1,"(anonymous)@558-558@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",558,558
+1,1,16,1,1,"(anonymous)@558-558@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",558,558
+1,1,19,1,1,"(anonymous)@558-558@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",558,558
+1,1,16,1,1,"(anonymous)@558-558@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",558,558
+1,1,18,1,1,"(anonymous)@559-559@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",559,559
+4,1,22,1,4,"(anonymous)@575-578@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",575,578
+4,1,22,1,4,"(anonymous)@578-581@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",578,581
+1,1,16,1,1,"(anonymous)@598-598@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",598,598
+1,1,16,1,1,"(anonymous)@598-598@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",598,598
+1,2,13,0,1,"(anonymous)@618-618@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",618,618
+1,2,39,1,1,"(anonymous)@618-618@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",618,618
+1,1,32,1,1,"(anonymous)@618-618@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",618,618
+1,1,32,1,1,"(anonymous)@622-622@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",622,622
+1,1,32,1,1,"(anonymous)@622-622@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",622,622
+1,1,9,1,1,"(anonymous)@630-630@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",630,630
+1,1,22,1,1,"(anonymous)@630-630@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",630,630
+1,1,22,1,1,"(anonymous)@630-630@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",630,630
+1,1,5,0,1,"(anonymous)@632-632@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",632,632
+1,1,10,1,1,"(anonymous)@632-632@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",632,632
+1,1,10,1,1,"(anonymous)@632-632@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",632,632
+1,1,14,1,1,"(anonymous)@653-653@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous) ( e )",653,653
+1,1,14,1,1,"(anonymous)@653-653@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous) ( e )",653,653
+1,1,22,1,1,"(anonymous)@669-669@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",669,669
+1,1,22,1,1,"(anonymous)@669-669@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",669,669
+1,1,8,0,1,"(anonymous)@674-674@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",674,674
+1,2,29,1,1,"(anonymous)@684-684@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",684,684
+1,1,22,1,1,"(anonymous)@684-684@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",684,684
+1,1,7,0,1,"(anonymous)@693-693@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",693,693
+1,2,29,1,1,"(anonymous)@703-703@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",703,703
+1,1,22,1,1,"(anonymous)@703-703@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",703,703
+50,6,317,2,50,"(anonymous)@668-717@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","(anonymous)","(anonymous)",668,717
+240,37,2758,0,632,"AdminBooksPage@131-762@src/app\admin\books\page.tsx","src/app\admin\books\page.tsx","AdminBooksPage","AdminBooksPage ( )",131,762
+10,3,59,0,10,"(anonymous)@25-34@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",25,34
+22,5,117,0,22,"(anonymous)@36-57@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",36,57
+1,1,5,0,1,"(anonymous)@61-61@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",61,61
+4,1,17,0,4,"(anonymous)@59-62@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",59,62
+1,1,11,1,1,"(anonymous)@68-68@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",68,68
+1,1,5,0,1,"(anonymous)@79-79@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",79,79
+1,2,16,1,1,"(anonymous)@84-84@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",84,84
+1,1,8,1,1,"(anonymous)@84-84@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",84,84
+32,4,170,2,32,"updateUser@64-95@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","updateUser","updateUser ( id , update )",64,95
+4,1,25,0,4,"onResize@118-121@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","onResize","onResize ( )",118,121
+45,17,476,0,52,"draw@139-190@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","draw","draw ( )",139,190
+4,1,24,1,4,"onMouseMove@194-197@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","onMouseMove","onMouseMove ( e )",194,197
+6,1,31,0,6,"(anonymous)@200-205@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",200,205
+37,3,331,0,109,"(anonymous)@98-206@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",98,206
+1,1,6,1,1,"(anonymous)@208-208@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",208,208
+1,1,10,0,1,"(anonymous)@208-208@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",208,208
+1,1,6,1,1,"(anonymous)@209-209@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",209,209
+1,1,10,0,1,"(anonymous)@209-209@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",209,209
+1,1,4,1,1,"(anonymous)@210-210@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",210,210
+1,1,10,0,1,"(anonymous)@210-210@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",210,210
+1,1,4,1,1,"(anonymous)@211-211@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",211,211
+1,1,10,0,1,"(anonymous)@211-211@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",211,211
+1,1,9,1,1,"(anonymous)@253-253@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",253,253
+1,1,22,1,1,"(anonymous)@253-253@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",253,253
+1,1,22,1,1,"(anonymous)@253-253@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",253,253
+1,1,5,0,1,"(anonymous)@263-263@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",263,263
+1,1,10,1,1,"(anonymous)@263-263@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",263,263
+1,1,10,1,1,"(anonymous)@263-263@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",263,263
+1,1,12,1,1,"(anonymous)@296-296@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",296,296
+1,1,12,1,1,"(anonymous)@296-296@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",296,296
+1,2,21,0,1,"(anonymous)@331-331@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",331,331
+6,4,39,1,6,"(anonymous)@350-355@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",350,355
+4,3,37,1,4,"(anonymous)@355-358@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",355,358
+6,3,39,1,6,"(anonymous)@395-400@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous) ( e )",395,400
+4,2,32,1,4,"(anonymous)@401-404@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous) ( e )",401,404
+6,4,41,1,6,"(anonymous)@429-434@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous) ( e )",429,434
+4,3,39,1,4,"(anonymous)@434-437@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous) ( e )",434,437
+10,2,24,0,11,"(anonymous)@445-455@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous) ( ) ( )",445,455
+136,42,912,2,174,"(anonymous)@286-459@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","(anonymous)","(anonymous)",286,459
+103,8,1421,0,456,"AdminUsersPage@16-471@src/app\admin\users\page.tsx","src/app\admin\users\page.tsx","AdminUsersPage","AdminUsersPage ( )",16,471
+4,1,25,0,4,"onResize@28-31@src/app\admin\page.tsx","src/app\admin\page.tsx","onResize","onResize ( )",28,31
+45,17,476,0,54,"draw@49-102@src/app\admin\page.tsx","src/app\admin\page.tsx","draw","draw ( )",49,102
+4,1,24,1,4,"onMouseMove@106-109@src/app\admin\page.tsx","src/app\admin\page.tsx","onMouseMove","onMouseMove ( e )",106,109
+6,1,31,0,6,"(anonymous)@112-117@src/app\admin\page.tsx","src/app\admin\page.tsx","(anonymous)","(anonymous)",112,117
+37,3,331,0,111,"(anonymous)@8-118@src/app\admin\page.tsx","src/app\admin\page.tsx","(anonymous)","(anonymous)",8,118
+8,1,32,1,8,"(anonymous)@256-263@src/app\admin\page.tsx","src/app\admin\page.tsx","(anonymous)","(anonymous)",256,263
+8,1,32,1,8,"(anonymous)@263-270@src/app\admin\page.tsx","src/app\admin\page.tsx","(anonymous)","(anonymous)",263,270
+8,1,32,1,8,"(anonymous)@334-341@src/app\admin\page.tsx","src/app\admin\page.tsx","(anonymous)","(anonymous)",334,341
+8,1,32,1,8,"(anonymous)@341-348@src/app\admin\page.tsx","src/app\admin\page.tsx","(anonymous)","(anonymous)",341,348
+257,1,636,0,397,"AdminPanelPage@7-403@src/app\admin\page.tsx","src/app\admin\page.tsx","AdminPanelPage","AdminPanelPage ( )",7,403
+28,4,142,0,28,"(anonymous)@43-70@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",43,70
+1,1,4,1,1,"(anonymous)@81-81@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",81,81
+15,3,94,1,16,"checkFavorite@72-87@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","checkFavorite","checkFavorite ( token )",72,87
+15,4,85,2,15,"fetchUserPremiumStatus@89-103@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","fetchUserPremiumStatus","fetchUserPremiumStatus ( userId , token )",89,103
+29,6,141,0,30,"toggleFavorite@105-134@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","toggleFavorite","toggleFavorite ( )",105,134
+1,1,6,1,1,"(anonymous)@139-139@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",139,139
+8,3,30,1,8,"(anonymous)@140-147@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",140,147
+4,1,12,0,4,"(anonymous)@148-151@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",148,151
+7,2,39,0,17,"(anonymous)@136-152@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",136,152
+1,1,5,0,1,"(anonymous)@159-159@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",159,159
+10,3,63,0,10,"handleShare@154-163@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","handleShare","handleShare ( )",154,163
+3,1,12,1,3,"(anonymous)@286-288@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",286,288
+3,1,12,1,3,"(anonymous)@288-290@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",288,290
+42,9,213,0,47,"(anonymous)@313-359@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",313,359
+6,2,30,1,6,"(anonymous)@379-384@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",379,384
+6,2,30,1,6,"(anonymous)@384-389@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","(anonymous)","(anonymous)",384,389
+283,25,1287,0,465,"BookDetailsPage@28-492@src/app\books\[id]\page.tsx","src/app\books\[id]\page.tsx","BookDetailsPage","BookDetailsPage ( )",28,492
+18,4,151,1,18,"decodeJWT@25-42@src/app\favorites\page.tsx","src/app\favorites\page.tsx","decodeJWT","decodeJWT ( token )",25,42
+25,5,127,0,26,"(anonymous)@60-85@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",60,85
+17,5,95,1,18,"fetchFavorites@87-104@src/app\favorites\page.tsx","src/app\favorites\page.tsx","fetchFavorites","fetchFavorites ( token )",87,104
+1,1,6,1,1,"(anonymous)@117-117@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",117,117
+1,1,8,1,1,"(anonymous)@117-117@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",117,117
+1,1,6,1,1,"(anonymous)@118-118@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",118,118
+1,1,8,1,1,"(anonymous)@118-118@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",118,118
+16,4,87,1,18,"removeFromFavorites@106-123@src/app\favorites\page.tsx","src/app\favorites\page.tsx","removeFromFavorites","removeFromFavorites ( bookId )",106,123
+15,4,85,2,15,"fetchUserPremiumStatus@125-139@src/app\favorites\page.tsx","src/app\favorites\page.tsx","fetchUserPremiumStatus","fetchUserPremiumStatus ( userId , token )",125,139
+2,5,24,1,2,"canDownload@141-142@src/app\favorites\page.tsx","src/app\favorites\page.tsx","canDownload","canDownload ( book )",141,142
+12,6,87,1,15,"(anonymous)@145-159@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",145,159
+5,1,24,0,20,"(anonymous)@144-163@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",144,163
+1,1,9,1,1,"(anonymous)@227-227@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",227,227
+1,1,9,1,1,"(anonymous)@232-232@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",232,232
+1,1,9,1,1,"(anonymous)@237-237@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",237,237
+4,1,22,1,4,"(anonymous)@280-283@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",280,283
+4,1,22,1,4,"(anonymous)@283-286@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",283,286
+1,1,7,0,1,"(anonymous)@346-346@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",346,346
+1,1,7,0,1,"(anonymous)@361-361@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",361,361
+108,4,398,1,114,"(anonymous)@258-371@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",258,371
+1,1,7,0,1,"(anonymous)@379-379@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",379,379
+17,3,61,2,17,"(anonymous)@378-394@src/app\favorites\page.tsx","src/app\favorites\page.tsx","(anonymous)","(anonymous)",378,394
+123,5,704,0,356,"FavoritesPage@44-399@src/app\favorites\page.tsx","src/app\favorites\page.tsx","FavoritesPage","FavoritesPage ( )",44,399
+4,1,31,1,4,"onInputFocus@19-22@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","onInputFocus","onInputFocus ( e )",19,22
+4,1,31,1,4,"onInputBlur@24-27@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","onInputBlur","onInputBlur ( e )",24,27
+1,1,5,0,1,"(anonymous)@51-51@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",51,51
+23,5,137,1,25,"handleSubmit@35-59@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","handleSubmit","handleSubmit ( e )",35,59
+5,1,32,1,5,"(anonymous)@177-181@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",177,181
+5,1,32,1,5,"(anonymous)@181-185@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",181,185
+1,1,9,1,1,"(anonymous)@218-218@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",218,218
+6,3,31,1,6,"(anonymous)@263-268@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",263,268
+6,3,31,1,6,"(anonymous)@268-273@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",268,273
+5,1,32,1,5,"(anonymous)@281-285@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",281,285
+5,1,32,1,5,"(anonymous)@285-289@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","(anonymous)","(anonymous)",285,289
+221,13,772,0,275,"ForgotPasswordPage@29-303@src/app\forgot-password\page.tsx","src/app\forgot-password\page.tsx","ForgotPasswordPage","ForgotPasswordPage ( )",29,303
+4,1,22,0,4,"(anonymous)@34-37@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",34,37
+45,17,474,0,54,"draw@53-106@src/app\login\page.tsx","src/app\login\page.tsx","draw","draw ( )",53,106
+4,1,24,1,4,"onMouseMove@110-113@src/app\login\page.tsx","src/app\login\page.tsx","onMouseMove","onMouseMove ( e )",110,113
+4,1,17,0,4,"(anonymous)@116-119@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",116,119
+35,3,323,0,107,"(anonymous)@14-120@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",14,120
+1,1,7,0,1,"(anonymous)@134-134@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",134,134
+19,5,113,0,20,"handleLogin@122-141@src/app\login\page.tsx","src/app\login\page.tsx","handleLogin","handleLogin ( )",122,141
+1,1,16,1,1,"(anonymous)@244-244@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",244,244
+4,1,22,1,4,"(anonymous)@255-258@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",255,258
+4,1,22,1,4,"(anonymous)@258-261@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",258,261
+3,1,12,1,3,"(anonymous)@293-295@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",293,295
+3,1,12,1,3,"(anonymous)@295-297@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",295,297
+1,1,16,1,1,"(anonymous)@305-305@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",305,305
+4,1,22,1,4,"(anonymous)@316-319@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",316,319
+4,1,22,1,4,"(anonymous)@319-322@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",319,322
+6,2,29,1,6,"(anonymous)@351-356@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",351,356
+6,2,29,1,6,"(anonymous)@356-361@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",356,361
+5,1,32,1,5,"(anonymous)@384-388@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",384,388
+5,1,32,1,5,"(anonymous)@388-392@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",388,392
+4,1,22,1,4,"(anonymous)@445-448@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",445,448
+4,1,22,1,4,"(anonymous)@448-451@src/app\login\page.tsx","src/app\login\page.tsx","(anonymous)","(anonymous)",448,451
+286,12,966,0,458,"LoginPage@7-464@src/app\login\page.tsx","src/app\login\page.tsx","LoginPage","LoginPage ( )",7,464
+3,1,9,0,3,"(anonymous)@12-14@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","(anonymous)","(anonymous)",12,14
+1,1,5,0,1,"(anonymous)@16-16@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","(anonymous)","(anonymous)",16,16
+4,1,20,0,8,"(anonymous)@10-17@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","(anonymous)","(anonymous)",10,17
+1,1,12,1,1,"(anonymous)@59-59@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","(anonymous)","(anonymous)",59,59
+1,1,12,1,1,"(anonymous)@59-59@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","(anonymous)","(anonymous)",59,59
+1,1,12,1,1,"(anonymous)@75-75@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","(anonymous)","(anonymous)",75,75
+1,1,12,1,1,"(anonymous)@75-75@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","(anonymous)","(anonymous)",75,75
+74,1,270,0,83,"PaymentErrorPage@7-89@src/app\payment\error\page.tsx","src/app\payment\error\page.tsx","PaymentErrorPage","PaymentErrorPage ( )",7,89
+3,1,9,0,3,"(anonymous)@12-14@src/app\payment\success\page.tsx","src/app\payment\success\page.tsx","(anonymous)","(anonymous)",12,14
+1,1,5,0,1,"(anonymous)@16-16@src/app\payment\success\page.tsx","src/app\payment\success\page.tsx","(anonymous)","(anonymous)",16,16
+4,1,20,0,8,"(anonymous)@10-17@src/app\payment\success\page.tsx","src/app\payment\success\page.tsx","(anonymous)","(anonymous)",10,17
+1,1,12,1,1,"(anonymous)@58-58@src/app\payment\success\page.tsx","src/app\payment\success\page.tsx","(anonymous)","(anonymous)",58,58
+1,1,12,1,1,"(anonymous)@58-58@src/app\payment\success\page.tsx","src/app\payment\success\page.tsx","(anonymous)","(anonymous)",58,58
+56,1,204,0,65,"PaymentSuccessPage@7-71@src/app\payment\success\page.tsx","src/app\payment\success\page.tsx","PaymentSuccessPage","PaymentSuccessPage ( )",7,71
+15,6,94,0,16,"(anonymous)@27-42@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",27,42
+16,3,83,1,16,"fetchSettings@44-59@src/app\premium\page.tsx","src/app\premium\page.tsx","fetchSettings","fetchSettings ( token )",44,59
+1,1,5,0,1,"(anonymous)@74-74@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",74,74
+25,5,130,0,25,"toggleTestMode@61-85@src/app\premium\page.tsx","src/app\premium\page.tsx","toggleTestMode","toggleTestMode ( )",61,85
+1,1,5,0,1,"(anonymous)@100-100@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",100,100
+25,4,127,1,25,"handleDemoActivate@87-111@src/app\premium\page.tsx","src/app\premium\page.tsx","handleDemoActivate","handleDemoActivate ( plan )",87,111
+4,1,22,0,4,"(anonymous)@133-136@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",133,136
+45,17,474,0,54,"draw@152-205@src/app\premium\page.tsx","src/app\premium\page.tsx","draw","draw ( )",152,205
+4,1,24,1,4,"onMouseMove@209-212@src/app\premium\page.tsx","src/app\premium\page.tsx","onMouseMove","onMouseMove ( e )",209,212
+4,1,17,0,4,"(anonymous)@215-218@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",215,218
+35,3,323,0,107,"(anonymous)@113-219@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",113,219
+7,2,54,1,7,"(anonymous)@248-254@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",248,254
+29,4,188,1,42,"handlePurchase@221-262@src/app\premium\page.tsx","src/app\premium\page.tsx","handlePurchase","handlePurchase ( plan )",221,262
+4,1,22,1,4,"(anonymous)@330-333@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",330,333
+4,1,22,1,4,"(anonymous)@333-336@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",333,336
+1,1,5,0,1,"(anonymous)@347-347@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",347,347
+1,2,15,1,1,"(anonymous)@356-356@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",356,356
+1,2,15,1,1,"(anonymous)@356-356@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",356,356
+4,1,22,1,4,"(anonymous)@375-378@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",375,378
+4,1,22,1,4,"(anonymous)@378-381@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",378,381
+1,1,5,0,1,"(anonymous)@408-408@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",408,408
+1,2,15,1,1,"(anonymous)@417-417@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",417,417
+1,2,15,1,1,"(anonymous)@417-417@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",417,417
+1,1,7,0,1,"(anonymous)@550-550@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",550,550
+3,1,12,1,3,"(anonymous)@560-562@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",560,562
+3,1,12,1,3,"(anonymous)@562-564@src/app\premium\page.tsx","src/app\premium\page.tsx","(anonymous)","(anonymous)",562,564
+307,23,1460,0,561,"PremiumPage@15-575@src/app\premium\page.tsx","src/app\premium\page.tsx","PremiumPage","PremiumPage ( )",15,575
+12,3,107,1,12,"parseJwtPayload@65-76@src/app\profile\page.tsx","src/app\profile\page.tsx","parseJwtPayload","parseJwtPayload ( token )",65,76
+23,5,123,0,27,"(anonymous)@78-104@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",78,104
+27,10,191,2,27,"fetchUser@106-132@src/app\profile\page.tsx","src/app\profile\page.tsx","fetchUser","fetchUser ( id , token )",106,132
+15,4,97,2,16,"fetchComments@134-149@src/app\profile\page.tsx","src/app\profile\page.tsx","fetchComments","fetchComments ( id , token )",134,149
+14,4,82,1,14,"fetchFavoritesCount@151-164@src/app\profile\page.tsx","src/app\profile\page.tsx","fetchFavoritesCount","fetchFavoritesCount ( token )",151,164
+63,16,348,0,70,"handleSave@166-235@src/app\profile\page.tsx","src/app\profile\page.tsx","handleSave","handleSave ( )",166,235
+8,2,43,0,8,"handleReset@237-244@src/app\profile\page.tsx","src/app\profile\page.tsx","handleReset","handleReset ( )",237,244
+1,1,6,1,1,"(anonymous)@258-258@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",258,258
+15,4,100,1,18,"handleDeleteComment@246-263@src/app\profile\page.tsx","src/app\profile\page.tsx","handleDeleteComment","handleDeleteComment ( commentId )",246,263
+32,6,167,0,39,"handleCancelSubscription@265-303@src/app\profile\page.tsx","src/app\profile\page.tsx","handleCancelSubscription","handleCancelSubscription ( )",265,303
+4,1,17,0,4,"(anonymous)@331-334@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",331,334
+26,6,144,0,35,"handleDeleteAccount@305-339@src/app\profile\page.tsx","src/app\profile\page.tsx","handleDeleteAccount","handleDeleteAccount ( )",305,339
+11,3,72,1,11,"formatDate@341-351@src/app\profile\page.tsx","src/app\profile\page.tsx","formatDate","formatDate ( date )",341,351
+9,3,64,1,9,"formatDateShort@353-361@src/app\profile\page.tsx","src/app\profile\page.tsx","formatDateShort","formatDateShort ( date )",353,361
+1,1,4,1,1,"(anonymous)@364-364@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",364,364
+1,2,10,2,1,"(anonymous)@366-366@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",366,366
+6,2,58,0,6,"getAverageRating@363-368@src/app\profile\page.tsx","src/app\profile\page.tsx","getAverageRating","getAverageRating ( )",363,368
+5,2,57,0,5,"getPremiumDaysLeft@370-374@src/app\profile\page.tsx","src/app\profile\page.tsx","getPremiumDaysLeft","getPremiumDaysLeft ( )",370,374
+5,2,61,0,5,"getDaysSinceJoined@376-380@src/app\profile\page.tsx","src/app\profile\page.tsx","getDaysSinceJoined","getDaysSinceJoined ( )",376,380
+1,1,23,2,1,"(anonymous)@385-385@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",385,385
+6,2,36,0,6,"getLastComment@382-387@src/app\profile\page.tsx","src/app\profile\page.tsx","getLastComment","getLastComment ( )",382,387
+1,1,5,0,1,"(anonymous)@426-426@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",426,426
+1,1,5,0,1,"(anonymous)@436-436@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",436,436
+1,1,9,1,1,"(anonymous)@570-570@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",570,570
+1,1,9,1,1,"(anonymous)@575-575@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",575,575
+1,1,9,1,1,"(anonymous)@580-580@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",580,580
+1,1,9,1,1,"(anonymous)@589-589@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",589,589
+1,2,15,1,1,"(anonymous)@653-653@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",653,653
+1,2,15,1,1,"(anonymous)@653-653@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",653,653
+1,2,15,1,1,"(anonymous)@668-668@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",668,668
+1,2,15,1,1,"(anonymous)@668-668@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",668,668
+1,1,7,0,1,"(anonymous)@676-676@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",676,676
+1,1,12,1,1,"(anonymous)@682-682@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",682,682
+1,1,12,1,1,"(anonymous)@682-682@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",682,682
+1,1,7,0,1,"(anonymous)@693-693@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",693,693
+1,1,12,1,1,"(anonymous)@699-699@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",699,699
+1,1,12,1,1,"(anonymous)@699-699@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",699,699
+1,2,17,1,1,"(anonymous)@715-715@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",715,715
+1,2,17,1,1,"(anonymous)@715-715@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",715,715
+1,1,5,0,1,"(anonymous)@822-822@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",822,822
+5,1,32,1,5,"(anonymous)@834-838@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",834,838
+5,1,32,1,5,"(anonymous)@838-842@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",838,842
+1,1,9,1,1,"(anonymous)@852-852@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",852,852
+5,3,31,1,5,"(anonymous)@879-883@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",879,883
+5,3,31,1,5,"(anonymous)@883-887@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",883,887
+5,1,17,0,5,"(anonymous)@895-899@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",895,899
+4,1,22,1,4,"(anonymous)@909-912@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",909,912
+4,1,22,1,4,"(anonymous)@912-915@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",912,915
+1,1,7,0,1,"(anonymous)@982-982@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",982,982
+1,1,12,1,1,"(anonymous)@990-990@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",990,990
+1,1,12,1,1,"(anonymous)@990-990@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",990,990
+48,4,223,1,48,"(anonymous)@952-999@src/app\profile\page.tsx","src/app\profile\page.tsx","(anonymous)","(anonymous)",952,999
+581,55,3045,0,969,"ProfilePage@39-1007@src/app\profile\page.tsx","src/app\profile\page.tsx","ProfilePage","ProfilePage ( )",39,1007
+17,4,139,1,17,"decodeJWT@26-42@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","decodeJWT","decodeJWT ( token )",26,42
+26,5,132,0,27,"(anonymous)@65-91@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",65,91
+20,8,123,1,20,"fetchRecommendations@93-112@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","fetchRecommendations","fetchRecommendations ( token )",93,112
+11,4,66,0,11,"fetchGenres@114-124@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","fetchGenres","fetchGenres ( )",114,124
+15,4,85,2,15,"fetchUserPremiumStatus@126-140@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","fetchUserPremiumStatus","fetchUserPremiumStatus ( userId , token )",126,140
+1,1,4,1,1,"(anonymous)@150-150@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",150,150
+14,4,90,1,14,"fetchFavorites@142-155@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","fetchFavorites","fetchFavorites ( token )",142,155
+1,1,4,1,1,"(anonymous)@173-173@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",173,173
+1,2,19,1,1,"(anonymous)@173-173@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",173,173
+22,5,129,1,22,"toggleFavorite@157-178@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","toggleFavorite","toggleFavorite ( bookId )",157,178
+2,5,24,1,2,"canDownload@182-183@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","canDownload","canDownload ( book )",182,183
+4,2,22,0,4,"openGenrePanel@185-188@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","openGenrePanel","openGenrePanel ( )",185,188
+1,1,4,1,1,"(anonymous)@207-207@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",207,207
+5,3,29,1,5,"(anonymous)@206-210@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",206,210
+5,1,15,1,9,"toggleGenre@204-212@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","toggleGenre","toggleGenre ( genre )",204,212
+1,1,5,0,1,"(anonymous)@228-228@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",228,228
+32,6,194,0,37,"saveGenresAndRefresh@214-250@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","saveGenresAndRefresh","saveGenresAndRefresh ( )",214,250
+3,1,11,0,3,"clearSelection@253-255@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","clearSelection","clearSelection ( )",253,255
+5,3,15,0,6,"(anonymous)@259-264@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",259,264
+1,1,12,1,1,"(anonymous)@312-312@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",312,312
+1,1,12,1,1,"(anonymous)@312-312@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",312,312
+5,2,32,1,5,"(anonymous)@356-360@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",356,360
+5,2,32,1,5,"(anonymous)@360-364@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",360,364
+1,1,5,0,1,"(anonymous)@382-382@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",382,382
+32,7,133,1,32,"(anonymous)@379-410@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",379,410
+4,1,12,0,4,"(anonymous)@431-434@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",431,434
+1,1,12,1,1,"(anonymous)@445-445@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",445,445
+1,1,12,1,1,"(anonymous)@445-445@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",445,445
+1,1,15,1,1,"(anonymous)@527-527@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",527,527
+1,1,12,1,1,"(anonymous)@538-538@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",538,538
+1,1,12,1,1,"(anonymous)@538-538@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",538,538
+4,1,22,1,4,"(anonymous)@554-557@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",554,557
+4,1,22,1,4,"(anonymous)@557-560@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",557,560
+1,1,7,0,1,"(anonymous)@624-624@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",624,624
+124,8,538,1,130,"(anonymous)@513-642@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","(anonymous)","(anonymous)",513,642
+254,22,1330,0,604,"RecommendationsPage@44-647@src/app\recommendations\page.tsx","src/app\recommendations\page.tsx","RecommendationsPage","RecommendationsPage ( )",44,647
+4,1,22,0,4,"(anonymous)@34-37@src/app\register\page.tsx","src/app\register\page.tsx","(anonymous)","(anonymous)",34,37
+45,17,474,0,54,"draw@53-106@src/app\register\page.tsx","src/app\register\page.tsx","draw","draw ( )",53,106
+4,1,24,1,4,"onMouseMove@110-113@src/app\register\page.tsx","src/app\register\page.tsx","onMouseMove","onMouseMove ( e )",110,113
+4,1,17,0,4,"(anonymous)@116-119@src/app\register\page.tsx","src/app\register\page.tsx","(anonymous)","(anonymous)",116,119
+35,3,323,0,107,"(anonymous)@14-120@src/app\register\page.tsx","src/app\register\page.tsx","(anonymous)","(anonymous)",14,120
+1,1,7,0,1,"(anonymous)@137-137@src/app\register\page.tsx","src/app\register\page.tsx","(anonymous)","(anonymous)",137,137
+22,8,131,0,23,"handleRegister@122-144@src/app\register\page.tsx","src/app\register\page.tsx","handleRegister","handleRegister ( )",122,144
+4,1,26,1,4,"(anonymous)@513-516@src/app\register\page.tsx","src/app\register\page.tsx","(anonymous)","(anonymous) ( e )",513,516
+4,1,26,1,4,"(anonymous)@517-520@src/app\register\page.tsx","src/app\register\page.tsx","(anonymous)","(anonymous) ( e )",517,520
+385,1,499,0,523,"RegisterPage@7-529@src/app\register\page.tsx","src/app\register\page.tsx","RegisterPage","RegisterPage ( )",7,529
+4,1,31,1,4,"onInputFocus@29-32@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","onInputFocus","onInputFocus ( e )",29,32
+4,1,31,1,4,"onInputBlur@34-37@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","onInputBlur","onInputBlur ( e )",34,37
+4,2,27,0,4,"(anonymous)@48-51@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",48,51
+1,1,5,0,1,"(anonymous)@73-73@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",73,73
+1,1,7,0,1,"(anonymous)@76-76@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",76,76
+31,6,165,1,33,"handleSubmit@53-85@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","handleSubmit","handleSubmit ( e )",53,85
+5,1,32,1,5,"(anonymous)@205-209@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",205,209
+5,1,32,1,5,"(anonymous)@209-213@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",209,213
+1,1,9,1,1,"(anonymous)@242-242@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",242,242
+1,1,9,1,1,"(anonymous)@255-255@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",255,255
+6,2,28,1,6,"(anonymous)@303-308@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",303,308
+6,2,28,1,6,"(anonymous)@308-313@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","(anonymous)","(anonymous)",308,313
+229,13,837,0,290,"ResetPasswordPage@39-328@src/app\reset-password\page.tsx","src/app\reset-password\page.tsx","ResetPasswordPage","ResetPasswordPage ( )",39,328
+19,1,38,1,19,"RootLayout@38-56@src/app\layout.tsx","src/app\layout.tsx","RootLayout","RootLayout ( {} children )",38,56
+18,4,151,1,18,"decodeJWT@28-45@src/app\page.tsx","src/app\page.tsx","decodeJWT","decodeJWT ( token )",28,45
+6,1,22,0,6,"(anonymous)@77-82@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",77,82
+3,2,15,0,3,"(anonymous)@84-86@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",84,86
+5,2,35,0,13,"(anonymous)@75-87@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",75,87
+3,1,17,0,3,"(anonymous)@89-91@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",89,91
+35,5,179,0,36,"loadUser@93-128@src/app\page.tsx","src/app\page.tsx","loadUser","loadUser ( )",93,128
+15,4,85,2,15,"fetchUserPremiumStatus@130-144@src/app\page.tsx","src/app\page.tsx","fetchUserPremiumStatus","fetchUserPremiumStatus ( userId , token )",130,144
+1,1,4,1,1,"(anonymous)@156-156@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",156,156
+14,3,84,1,15,"fetchFavorites@147-161@src/app\page.tsx","src/app\page.tsx","fetchFavorites","fetchFavorites ( token )",147,161
+1,1,4,1,1,"(anonymous)@176-176@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",176,176
+1,1,8,1,1,"(anonymous)@176-176@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",176,176
+1,1,7,1,1,"(anonymous)@188-188@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",188,188
+30,6,154,1,32,"toggleFavorite@163-194@src/app\page.tsx","src/app\page.tsx","toggleFavorite","toggleFavorite ( bookId )",163,194
+25,5,147,1,28,"handleDownload@198-225@src/app\page.tsx","src/app\page.tsx","handleDownload","handleDownload ( bookId )",198,225
+23,7,183,0,26,"(anonymous)@228-253@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",228,253
+3,1,6,0,3,"(anonymous)@255-257@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",255,257
+3,1,6,0,3,"(anonymous)@260-262@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",260,262
+1,1,7,0,1,"handleStorage@265-265@src/app\page.tsx","src/app\page.tsx","handleStorage","handleStorage ( )",265,265
+1,1,9,0,1,"(anonymous)@267-267@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",267,267
+5,1,20,0,5,"(anonymous)@264-268@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",264,268
+8,1,40,0,8,"handleLogout@270-277@src/app\page.tsx","src/app\page.tsx","handleLogout","handleLogout ( )",270,277
+4,1,22,1,4,"(anonymous)@344-347@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",344,347
+4,1,22,1,4,"(anonymous)@347-350@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",347,350
+49,11,161,1,49,"(anonymous)@361-409@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous) ( {} backgroundColor color {} premiumChecked ( < > { ! isPremium && ( { backgroundColor : '#d4a23b' , color : '#fff' } ; <Link href='/premium' className='nav-btn' style={>
+                          ✨ Premium
+                        </Link> ) } { isPremium && ( { padding : '8px 16px' , backgroundColor : 'rgba(212,162,59,0.2)' , borderRadius : '8px' , color : '#d4a23b' , fontSize : '0.9rem' , fontWeight : 'bold' } ; <span style={>
+                          ⭐ Premium
+                        </span> ) } < / > ) {} ( role === 'admin' || role === 'superadmin' ) ( { backgroundColor : role === 'superadmin' ? 'transparent' : '#c47f5f' , color : role === 'superadmin' ? '#ffd700' : '#fff8f2' , border : role === 'superadmin' ? '2px solid #ffd700' : 'none' , fontWeight : role === 'superadmin' ? '700' : '600' , } ; <Link
+                      href='/admin'
+                      className='nav-btn'
+                      style={
+                    >
+                      { role === 'superadmin' ? '👑 Super Admin' : '🛠️ Admin Panel' 
+                    </Link> ) handleLogout )",361,409
+1,1,9,1,1,"(anonymous)@434-434@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",434,434
+1,1,9,1,1,"(anonymous)@439-439@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",439,439
+1,1,9,1,1,"(anonymous)@444-444@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",444,444
+4,1,15,1,4,"(anonymous)@483-486@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",483,486
+3,1,12,1,3,"(anonymous)@506-508@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",506,508
+3,1,12,1,3,"(anonymous)@508-510@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",508,510
+4,1,22,1,4,"(anonymous)@527-530@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",527,530
+4,1,22,1,4,"(anonymous)@530-533@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",530,533
+1,1,7,0,1,"(anonymous)@618-618@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",618,618
+180,14,661,1,193,"(anonymous)@460-652@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",460,652
+1,1,7,0,1,"(anonymous)@660-660@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",660,660
+17,3,61,2,17,"(anonymous)@659-675@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",659,675
+5,1,22,1,5,"(anonymous)@707-711@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",707,711
+4,1,22,1,4,"(anonymous)@711-714@src/app\page.tsx","src/app\page.tsx","(anonymous)","(anonymous)",711,714
+210,9,942,0,678,"HomePage@47-724@src/app\page.tsx","src/app\page.tsx","HomePage","HomePage ( )",47,724
+6,2,38,1,6,"(anonymous)@21-26@src/app\sitemap.ts","src/app\sitemap.ts","(anonymous)","(anonymous)",21,26
+18,2,205,0,28,"sitemap@5-32@src/app\sitemap.ts","src/app\sitemap.ts","sitemap","sitemap ( )",5,32
+18,4,151,1,19,"decodeJWT@20-38@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","decodeJWT","decodeJWT ( token )",20,38
+3,2,17,1,3,"stripHtml@40-42@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","stripHtml","stripHtml ( input '' )",40,42
+16,6,79,0,16,"(anonymous)@64-79@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",64,79
+1,1,6,1,1,"(anonymous)@85-85@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",85,85
+1,1,5,1,1,"(anonymous)@86-86@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",86,86
+1,1,9,1,1,"(anonymous)@87-87@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",87,87
+8,2,50,0,8,"(anonymous)@81-88@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",81,88
+4,2,13,0,5,"(anonymous)@90-94@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",90,94
+5,3,34,1,5,"handleClickOutside@97-101@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","handleClickOutside","handleClickOutside ( e )",97,101
+1,1,9,0,1,"(anonymous)@103-103@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",103,103
+5,1,19,0,9,"(anonymous)@96-104@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",96,104
+4,5,45,1,4,"(anonymous)@121-124@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",121,124
+24,7,152,0,28,"fetchComments@106-133@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","fetchComments","fetchComments ( )",106,133
+6,1,47,0,6,"refreshBookData@135-140@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","refreshBookData","refreshBookData ( )",135,140
+4,1,12,0,4,"(anonymous)@197-200@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",197,200
+53,15,291,0,64,"handleSubmit@142-205@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","handleSubmit","handleSubmit ( )",142,205
+37,8,200,1,43,"handleSubmitReply@207-249@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","handleSubmitReply","handleSubmitReply ( targetCommentId )",207,249
+1,1,5,0,1,"(anonymous)@260-260@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",260,260
+22,5,129,1,25,"handleDelete@251-275@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","handleDelete","handleDelete ( commentId )",251,275
+1,1,11,1,1,"(anonymous)@281-281@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",281,281
+1,1,5,0,1,"(anonymous)@294-294@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",294,294
+31,6,182,2,35,"handleToggleHidden@279-313@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","handleToggleHidden","handleToggleHidden ( commentId , currentlyHidden )",279,313
+1,1,11,1,1,"(anonymous)@323-323@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",323,323
+18,10,170,1,21,"(anonymous)@327-347@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",327,347
+1,1,9,1,21,"(anonymous)@327-347@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",327,347
+3,2,30,1,3,"(anonymous)@367-369@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",367,369
+3,1,9,1,5,"(anonymous)@366-370@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",366,370
+35,5,186,2,68,"handleReact@315-382@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","handleReact","handleReact ( commentId , type )",315,382
+3,1,7,0,3,"(anonymous)@387-389@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",387,389
+1,1,5,1,1,"(anonymous)@394-394@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",394,394
+9,7,109,2,11,"(anonymous)@395-405@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",395,405
+7,3,43,1,7,"(anonymous)@407-413@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",407,413
+7,4,40,1,7,"getUserName@422-428@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","getUserName","getUserName ( userId )",422,428
+13,6,106,1,15,"getAvatarInfo@430-444@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","getAvatarInfo","getAvatarInfo ( userId )",430,444
+1,1,23,2,1,"(anonymous)@490-490@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",490,490
+17,13,137,1,21,"(anonymous)@499-519@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",499,519
+30,15,214,1,57,"renderRootComment@468-524@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","renderRootComment","renderRootComment ( c )",468,524
+1,1,7,0,1,"(anonymous)@624-624@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",624,624
+1,1,13,0,1,"(anonymous)@644-644@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",644,644
+1,1,9,0,1,"(anonymous)@721-721@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",721,721
+1,1,9,0,1,"(anonymous)@740-740@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",740,740
+5,2,27,0,5,"(anonymous)@762-766@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",762,766
+1,1,9,1,1,"(anonymous)@777-777@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",777,777
+1,1,7,0,1,"(anonymous)@795-795@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",795,795
+285,46,1154,4,290,"renderCommentCard@526-815@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","renderCommentCard","renderCommentCard ( c , isReply , canDelete , canHide )",526,815
+1,1,9,1,1,"(anonymous)@869-869@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",869,869
+1,1,10,1,1,"(anonymous)@882-882@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",882,882
+1,1,10,1,1,"(anonymous)@882-882@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",882,882
+1,1,6,0,1,"(anonymous)@901-901@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous)",901,901
+21,2,99,1,21,"(anonymous)@1113-1133@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","(anonymous)","(anonymous) ( {} padding textAlign color fontSize ) ( {} padding textAlign backgroundColor borderRadius border {} color fontSize margin )",1113,1133
+387,36,1869,1,1119,"CommentsSection@44-1162@src/components\CommentsSection\CommentsSection.tsx","src/components\CommentsSection\CommentsSection.tsx","CommentsSection","CommentsSection ( {} bookId )",44,1162
+1,1,13,1,1,"(anonymous)@25-25@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",25,25
+1,1,6,1,1,"(anonymous)@28-28@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",28,28
+1,1,8,1,1,"(anonymous)@28-28@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",28,28
+3,1,8,0,3,"(anonymous)@27-29@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",27,29
+5,2,24,2,8,"(anonymous)@23-30@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",23,30
+1,1,6,1,1,"(anonymous)@33-33@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",33,33
+1,1,8,1,1,"(anonymous)@33-33@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",33,33
+3,1,14,1,3,"removeToast@32-34@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","removeToast","removeToast ( id )",32,34
+1,1,7,0,1,"(anonymous)@61-61@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",61,61
+27,1,96,1,27,"(anonymous)@58-84@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","(anonymous)","(anonymous)",58,84
+41,1,222,1,82,"ToastProvider@20-101@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","ToastProvider","ToastProvider ( {} children )",20,101
+7,2,29,0,7,"useToast@103-109@src/components\Toast\ToastContext.tsx","src/components\Toast\ToastContext.tsx","useToast","useToast ( )",103,109
+11,2,40,2,11,"(anonymous)@34-44@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",34,44
+20,4,171,2,33,"renderInline@14-46@src/components\AiWidget.tsx","src/components\AiWidget.tsx","renderInline","renderInline ( text , keyPrefix )",14,46
+5,1,19,2,5,"(anonymous)@59-63@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",59,63
+10,2,54,1,14,"flushList@55-68@src/components\AiWidget.tsx","src/components\AiWidget.tsx","flushList","flushList ( key )",55,68
+17,3,100,2,20,"(anonymous)@70-89@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",70,89
+9,1,72,1,45,"renderMessageText@50-94@src/components\AiWidget.tsx","src/components\AiWidget.tsx","renderMessageText","renderMessageText ( text )",50,94
+3,1,18,0,3,"scrollToBottom@117-119@src/components\AiWidget.tsx","src/components\AiWidget.tsx","scrollToBottom","scrollToBottom ( )",117,119
+6,2,20,0,6,"(anonymous)@121-126@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",121,126
+1,1,7,1,1,"(anonymous)@139-139@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",139,139
+1,1,16,1,1,"(anonymous)@141-141@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",141,141
+1,1,7,1,1,"(anonymous)@169-169@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",169,169
+1,1,7,1,1,"(anonymous)@176-176@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",176,176
+1,1,8,0,1,"setTimeout@179-179@src/components\AiWidget.tsx","src/components\AiWidget.tsx","setTimeout","setTimeout",179,179
+43,8,285,1,54,"sendMessage@128-181@src/components\AiWidget.tsx","src/components\AiWidget.tsx","sendMessage","sendMessage ( text )",128,181
+4,2,26,1,4,"handleSend@183-186@src/components\AiWidget.tsx","src/components\AiWidget.tsx","handleSend","handleSend ( e )",183,186
+6,3,35,1,6,"handleKeyDown@188-193@src/components\AiWidget.tsx","src/components\AiWidget.tsx","handleKeyDown","handleKeyDown ( e )",188,193
+1,1,6,0,1,"(anonymous)@210-210@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",210,210
+4,1,24,1,4,"(anonymous)@228-231@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",228,231
+4,1,24,1,4,"(anonymous)@231-234@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous)",231,234
+1,1,10,1,1,"(anonymous)@295-295@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) e . currentTarget . style . background = 'rgba(255,255,255,0.2)'",295,295
+17,5,88,2,17,"(anonymous)@318-334@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) ( idx ; { alignSelf : msg . role === 'user' ? 'flex-end' : 'flex-start' , backgroundColor : msg . role === 'user' ? theme . userMsgBg : theme . assistantMsgBg , color : theme . cream , padding : '12px 16px' , borderRadius : msg . role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px' , maxWidth : '85%' , wordBreak : 'break-word' , boxShadow : '0 2px 8px rgba(0,0,0,0.2)' , } ; <div
+                key={
+                style={
+              >
+                { msg . role === 'assistant' ? renderMessageText ( msg . text ) : msg . text 
+              </div> )",318,334
+1,1,12,0,1,"(anonymous)@340-340@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) sendMessage ( p . replace ( /^\S+\s/ , '' ) )",340,340
+19,2,55,2,19,"(anonymous)@339-357@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) ( i ; ( ) => ; isLoading ; { background : 'rgba(191,122,82,0.15)' , border : '1px solid rgba(191,122,82,0.4)' , borderRadius : '10px' , padding : '8px 12px' , color : theme . cream , fontSize : '13px' , textAlign : 'left' , cursor : isLoading ? 'not-allowed' : 'pointer' , } ; <button
+                    key={
+                    onClick={
+                    disabled={
+                    style={
+                  >
+                    { p 
+                  </button> )",339,357
+1,1,9,1,1,"(anonymous)@414-414@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) setInput ( e . target . value )",414,414
+4,1,24,1,4,"(anonymous)@424-427@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) { e . currentTarget . style . borderColor = theme . warmAccent ; e . currentTarget . style . boxShadow = `0 0 0 3px rgba(191, 122, 82, 0.1)` ;",424,427
+4,1,24,1,4,"(anonymous)@427-430@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) { e . currentTarget . style . borderColor = theme . borderColor ; e . currentTarget . style . boxShadow = 'none' ;",427,430
+6,3,37,1,6,"(anonymous)@452-457@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) { if ( input . trim ( ) && ! isLoading ) { e . currentTarget . style . transform = 'scale(1.05)' ; e . currentTarget . style . background = theme . warmAccentHover ; }",452,457
+4,3,35,1,4,"(anonymous)@457-460@src/components\AiWidget.tsx","src/components\AiWidget.tsx","(anonymous)","(anonymous) { e . currentTarget . style . transform = 'scale(1)' ; e . currentTarget . style . background = input . trim ( ) && ! isLoading ? theme . warmAccent : '#3f3f46' ;",457,460
+240,11,933,0,373,"AiWidget@102-474@src/components\AiWidget.tsx","src/components\AiWidget.tsx","AiWidget","AiWidget ( )",102,474
+1,1,6,1,1,"(anonymous)@43-43@src/components\ConfirmModal.tsx","src/components\ConfirmModal.tsx","(anonymous)","(anonymous)",43,43
+92,7,304,1,93,"ConfirmModal@15-107@src/components\ConfirmModal.tsx","src/components\ConfirmModal.tsx","ConfirmModal","ConfirmModal ( {} open title message confirmLabel 'Так, підтвердити' , cancelLabel 'Скасувати' , danger false , onConfirm onCancel )",15,107
+4,1,22,1,4,"constructor@14-17@src/components\ErrorBoundary.tsx","src/components\ErrorBoundary.tsx","constructor","constructor ( props )",14,17
+3,1,13,0,3,"getDerivedStateFromError@19-21@src/components\ErrorBoundary.tsx","src/components\ErrorBoundary.tsx","getDerivedStateFromError","getDerivedStateFromError ( )",19,21
+3,1,24,2,4,"componentDidCatch@23-26@src/components\ErrorBoundary.tsx","src/components\ErrorBoundary.tsx","componentDidCatch","componentDidCatch ( error , errorInfo )",23,26
+3,1,16,0,3,"handleReset@28-30@src/components\ErrorBoundary.tsx","src/components\ErrorBoundary.tsx","handleReset","handleReset ( )",28,30
+38,3,143,0,39,"render@32-70@src/components\ErrorBoundary.tsx","src/components\ErrorBoundary.tsx","render","render ( )",32,70
+1,1,5,0,1,"(anonymous)@8-8@src/components\FadeIn.tsx","src/components\FadeIn.tsx","(anonymous)","(anonymous)",8,8
+1,1,5,0,1,"(anonymous)@9-9@src/components\FadeIn.tsx","src/components\FadeIn.tsx","(anonymous)","(anonymous)",9,9
+4,1,17,0,4,"(anonymous)@7-10@src/components\FadeIn.tsx","src/components\FadeIn.tsx","(anonymous)","(anonymous)",7,10
+18,3,78,1,23,"FadeIn@4-26@src/components\FadeIn.tsx","src/components\FadeIn.tsx","FadeIn","FadeIn ( {} children )",4,26
+1,1,5,0,1,"(anonymous)@11-11@src/components\FavoriteTab.tsx","src/components\FavoriteTab.tsx","(anonymous)","(anonymous)",11,11
+1,1,5,0,1,"(anonymous)@12-12@src/components\FavoriteTab.tsx","src/components\FavoriteTab.tsx","(anonymous)","(anonymous)",12,12
+4,1,17,0,4,"(anonymous)@10-13@src/components\FavoriteTab.tsx","src/components\FavoriteTab.tsx","(anonymous)","(anonymous)",10,13
+1,1,7,0,1,"(anonymous)@16-16@src/components\FavoriteTab.tsx","src/components\FavoriteTab.tsx","(anonymous)","(anonymous)",16,16
+1,1,5,0,1,"(anonymous)@16-16@src/components\FavoriteTab.tsx","src/components\FavoriteTab.tsx","(anonymous)","(anonymous)",16,16
+1,1,5,0,1,"(anonymous)@16-16@src/components\FavoriteTab.tsx","src/components\FavoriteTab.tsx","(anonymous)","(anonymous)",16,16
+82,4,264,0,88,"FavoriteTab@5-92@src/components\FavoriteTab.tsx","src/components\FavoriteTab.tsx","FavoriteTab","FavoriteTab ( )",5,92
+1,1,5,0,1,"(anonymous)@12-12@src/components\HomeButton.tsx","src/components\HomeButton.tsx","(anonymous)","(anonymous)",12,12
+1,1,5,0,1,"(anonymous)@13-13@src/components\HomeButton.tsx","src/components\HomeButton.tsx","(anonymous)","(anonymous)",13,13
+4,1,19,0,5,"(anonymous)@10-14@src/components\HomeButton.tsx","src/components\HomeButton.tsx","(anonymous)","(anonymous)",10,14
+1,1,7,0,1,"(anonymous)@20-20@src/components\HomeButton.tsx","src/components\HomeButton.tsx","(anonymous)","(anonymous)",20,20
+58,3,93,0,66,"HomeButton@5-70@src/components\HomeButton.tsx","src/components\HomeButton.tsx","HomeButton","HomeButton ( )",5,70
+1,1,6,1,1,"(anonymous)@30-30@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",30,30
+1,2,10,1,1,"(anonymous)@31-31@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",31,31
+1,1,6,0,1,"(anonymous)@32-32@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",32,32
+1,1,5,0,1,"(anonymous)@33-33@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",33,33
+15,2,72,0,16,"(anonymous)@19-34@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",19,34
+1,1,12,1,1,"(anonymous)@69-69@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",69,69
+1,1,12,1,1,"(anonymous)@69-69@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",69,69
+31,2,131,1,31,"(anonymous)@57-87@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","(anonymous)","(anonymous)",57,87
+29,3,126,0,77,"RecommendedBooks@15-91@src/components\RecommendedBooks.tsx","src/components\RecommendedBooks.tsx","RecommendedBooks","RecommendedBooks ( )",15,91
+1,1,5,0,1,"(anonymous)@20-20@src/components\ScrollToTop.tsx","src/components\ScrollToTop.tsx","(anonymous)","(anonymous)",20,20
+6,2,45,0,6,"handleScroll@16-21@src/components\ScrollToTop.tsx","src/components\ScrollToTop.tsx","handleScroll","handleScroll ( )",16,21
+1,1,5,0,1,"(anonymous)@26-26@src/components\ScrollToTop.tsx","src/components\ScrollToTop.tsx","(anonymous)","(anonymous)",26,26
+7,2,43,0,7,"(anonymous)@29-35@src/components\ScrollToTop.tsx","src/components\ScrollToTop.tsx","(anonymous)","(anonymous)",29,35
+13,2,84,0,27,"(anonymous)@10-36@src/components\ScrollToTop.tsx","src/components\ScrollToTop.tsx","(anonymous)","(anonymous)",10,36
+3,1,20,0,3,"scrollToTop@38-40@src/components\ScrollToTop.tsx","src/components\ScrollToTop.tsx","scrollToTop","scrollToTop ( )",38,40
+64,4,113,0,96,"ScrollToTop@4-99@src/components\ScrollToTop.tsx","src/components\ScrollToTop.tsx","ScrollToTop","ScrollToTop ( )",4,99
+4,1,25,0,4,"onResize@25-28@src/components\WebBackground.tsx","src/components\WebBackground.tsx","onResize","onResize ( )",25,28
+45,17,476,0,54,"draw@47-100@src/components\WebBackground.tsx","src/components\WebBackground.tsx","draw","draw ( )",47,100
+4,1,24,1,4,"onMouseMove@104-107@src/components\WebBackground.tsx","src/components\WebBackground.tsx","onMouseMove","onMouseMove ( e )",104,107
+6,1,31,0,6,"(anonymous)@110-115@src/components\WebBackground.tsx","src/components\WebBackground.tsx","(anonymous)","(anonymous)",110,115
+37,3,330,0,112,"(anonymous)@5-116@src/components\WebBackground.tsx","src/components\WebBackground.tsx","(anonymous)","(anonymous)",5,116
+4,1,18,0,116,"WebBackground@4-119@src/components\WebBackground.tsx","src/components\WebBackground.tsx","WebBackground","WebBackground ( )",4,119

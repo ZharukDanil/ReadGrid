@@ -1,0 +1,187 @@
+19,6,170,1,23,"GET@6-28@src/app/api\admin\settings\route.ts","src/app/api\admin\settings\route.ts","GET","GET ( req )",6,28
+24,8,239,1,30,"PATCH@30-59@src/app/api\admin\settings\route.ts","src/app/api\admin\settings\route.ts","PATCH","PATCH ( req )",30,59
+63,21,584,2,90,"PATCH@7-96@src/app/api\admin\users\[id]\route.ts","src/app/api\admin\users\[id]\route.ts","PATCH","PATCH ( req , {} params )",7,96
+25,8,259,1,31,"GET@6-36@src/app/api\admin\users\route.ts","src/app/api\admin\users\route.ts","GET","GET ( req )",6,36
+53,14,390,2,65,"GET@11-75@src/app/api\books\[id]\download\route.ts","src/app/api\books\[id]\download\route.ts","GET","GET ( req , {} params )",11,75
+40,13,362,2,54,"GET@10-63@src/app/api\books\[id]\file\route.ts","src/app/api\books\[id]\file\route.ts","GET","GET ( req , {} params )",10,63
+21,6,155,1,25,"makeFilePrivate@12-36@src/app/api\books\[id]\route.ts","src/app/api\books\[id]\route.ts","makeFilePrivate","makeFilePrivate ( fileUrl )",12,36
+20,4,161,2,25,"GET@39-63@src/app/api\books\[id]\route.ts","src/app/api\books\[id]\route.ts","GET","GET ( req , {} params )",39,63
+84,39,723,2,107,"PUT@66-172@src/app/api\books\[id]\route.ts","src/app/api\books\[id]\route.ts","PUT","PUT ( req , {} params )",66,172
+33,9,301,2,44,"DELETE@175-218@src/app/api\books\[id]\route.ts","src/app/api\books\[id]\route.ts","DELETE","DELETE ( req , {} params )",175,218
+39,11,382,1,50,"GET@8-57@src/app/api\books\route.ts","src/app/api\books\route.ts","GET","GET ( req )",8,57
+58,25,498,1,72,"POST@60-131@src/app/api\books\route.ts","src/app/api\books\route.ts","POST","POST ( req )",60,131
+9,7,78,1,9,"(anonymous)@53-61@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",53,61
+12,2,68,0,22,"(anonymous)@41-62@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",41,62
+8,2,39,0,8,"getCatalog@67-74@src/app/api\chat\route.ts","src/app/api\chat\route.ts","getCatalog","getCatalog ( )",67,74
+7,3,73,1,8,"(anonymous)@80-87@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",80,87
+6,2,39,1,14,"buildBooksContext@76-89@src/app/api\chat\route.ts","src/app/api\chat\route.ts","buildBooksContext","buildBooksContext ( books )",76,89
+5,1,23,1,5,"(anonymous)@139-143@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",139,143
+40,1,221,0,49,"(anonymous)@97-145@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",97,145
+8,2,31,0,8,"getAdminStats@150-157@src/app/api\chat\route.ts","src/app/api\chat\route.ts","getAdminStats","getAdminStats ( )",150,157
+1,1,12,1,1,"(anonymous)@163-163@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",163,163
+12,3,88,1,14,"buildAdminStatsContext@159-172@src/app/api\chat\route.ts","src/app/api\chat\route.ts","buildAdminStatsContext","buildAdminStatsContext ( stats )",159,172
+7,5,60,1,7,"detectLang@182-188@src/app/api\chat\route.ts","src/app/api\chat\route.ts","detectLang","detectLang ( text )",182,188
+10,3,36,1,10,"languageDirective@193-202@src/app/api\chat\route.ts","src/app/api\chat\route.ts","languageDirective","languageDirective ( lang )",193,202
+56,3,65,3,59,"buildSystemInstruction@207-265@src/app/api\chat\route.ts","src/app/api\chat\route.ts","buildSystemInstruction","buildSystemInstruction ( booksContext , lang , adminContext )",207,265
+12,7,116,1,13,"parseHistory@270-282@src/app/api\chat\route.ts","src/app/api\chat\route.ts","parseHistory","parseHistory ( raw )",270,282
+10,6,122,2,10,"buildTurns@284-293@src/app/api\chat\route.ts","src/app/api\chat\route.ts","buildTurns","buildTurns ( history , message )",284,293
+11,5,75,1,12,"getRequesterRole@298-309@src/app/api\chat\route.ts","src/app/api\chat\route.ts","getRequesterRole","getRequesterRole ( req )",298,309
+1,1,9,0,1,"(anonymous)@316-316@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",316,316
+1,1,8,2,1,"(anonymous)@316-316@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",316,316
+1,1,7,1,1,"(anonymous)@321-321@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",321,321
+1,1,15,1,1,"sleep@321-321@src/app/api\chat\route.ts","src/app/api\chat\route.ts","sleep","sleep ( ms )",321,321
+4,2,29,1,4,"(anonymous)@326-329@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",326,329
+30,8,197,2,38,"callGemini@323-360@src/app/api\chat\route.ts","src/app/api\chat\route.ts","callGemini","callGemini ( turns , systemInstruction )",323,360
+1,1,6,0,1,"(anonymous)@366-366@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",366,366
+1,1,16,1,1,"(anonymous)@379-379@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",379,379
+1,1,2,0,1,"(anonymous)@390-390@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",390,390
+42,6,310,2,46,"callGroq@362-407@src/app/api\chat\route.ts","src/app/api\chat\route.ts","callGroq","callGroq ( turns , systemInstruction )",362,407
+1,1,6,1,1,"(anonymous)@473-473@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",473,473
+1,1,9,1,1,"(anonymous)@474-474@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",474,474
+1,2,15,2,1,"(anonymous)@479-479@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",479,479
+5,1,51,1,5,"(anonymous)@477-481@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",477,481
+1,1,6,1,1,"(anonymous)@482-482@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",482,482
+1,2,20,2,1,"(anonymous)@483-483@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",483,483
+4,3,47,1,4,"(anonymous)@488-491@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",488,491
+22,7,229,3,36,"buildFallbackList@459-494@src/app/api\chat\route.ts","src/app/api\chat\route.ts","buildFallbackList","buildFallbackList ( message , books , lang )",459,494
+1,1,2,0,1,"(anonymous)@510-510@src/app/api\chat\route.ts","src/app/api\chat\route.ts","(anonymous)","(anonymous)",510,510
+52,16,413,1,67,"POST@499-565@src/app/api\chat\route.ts","src/app/api\chat\route.ts","POST","POST ( req )",499,565
+64,15,598,2,88,"POST@9-96@src/app/api\comments\[id]\react\route.ts","src/app/api\comments\[id]\react\route.ts","POST","POST ( req , {} params )",9,96
+1,1,4,1,1,"(anonymous)@47-47@src/app/api\comments\[id]\route.ts","src/app/api\comments\[id]\route.ts","(anonymous)","(anonymous)",47,47
+55,14,567,2,72,"DELETE@11-82@src/app/api\comments\[id]\route.ts","src/app/api\comments\[id]\route.ts","DELETE","DELETE ( req , {} params )",11,82
+38,12,320,2,48,"PATCH@84-131@src/app/api\comments\[id]\route.ts","src/app/api\comments\[id]\route.ts","PATCH","PATCH ( req , {} params )",84,131
+3,2,17,1,3,"stripHtml@14-16@src/app/api\comments\route.ts","src/app/api\comments\route.ts","stripHtml","stripHtml ( input '' )",14,16
+1,1,7,1,1,"(anonymous)@20-20@src/app/api\comments\route.ts","src/app/api\comments\route.ts","(anonymous)","(anonymous)",20,20
+4,1,25,1,4,"containsBannedWord@18-21@src/app/api\comments\route.ts","src/app/api\comments\route.ts","containsBannedWord","containsBannedWord ( text )",18,21
+1,1,4,1,1,"(anonymous)@56-56@src/app/api\comments\route.ts","src/app/api\comments\route.ts","(anonymous)","(anonymous)",56,56
+7,3,71,1,7,"(anonymous)@64-70@src/app/api\comments\route.ts","src/app/api\comments\route.ts","(anonymous)","(anonymous)",64,70
+3,1,19,1,3,"(anonymous)@86-88@src/app/api\comments\route.ts","src/app/api\comments\route.ts","(anonymous)","(anonymous)",86,88
+9,3,64,1,9,"(anonymous)@91-99@src/app/api\comments\route.ts","src/app/api\comments\route.ts","(anonymous)","(anonymous)",91,99
+55,13,528,1,84,"GET@23-106@src/app/api\comments\route.ts","src/app/api\comments\route.ts","GET","GET ( req )",23,106
+109,30,906,1,138,"POST@108-245@src/app/api\comments\route.ts","src/app/api\comments\route.ts","POST","POST ( req )",108,245
+22,7,201,1,27,"GET@9-35@src/app/api\favorites\route.ts","src/app/api\favorites\route.ts","GET","GET ( req )",9,35
+32,9,308,1,44,"POST@38-81@src/app/api\favorites\route.ts","src/app/api\favorites\route.ts","POST","POST ( req )",38,81
+1,1,8,1,1,"(anonymous)@109-109@src/app/api\favorites\route.ts","src/app/api\favorites\route.ts","(anonymous)","(anonymous)",109,109
+26,7,261,1,34,"DELETE@84-117@src/app/api\favorites\route.ts","src/app/api\favorites\route.ts","DELETE","DELETE ( req )",84,117
+1,1,9,1,1,"(anonymous)@55-55@src/app/api\forgot-password\route.ts","src/app/api\forgot-password\route.ts","(anonymous)","(anonymous)",55,55
+40,8,345,1,51,"POST@13-63@src/app/api\forgot-password\route.ts","src/app/api\forgot-password\route.ts","POST","POST ( req )",13,63
+1,1,6,1,1,"(anonymous)@15-15@src/app/api\genres\route.ts","src/app/api\genres\route.ts","(anonymous)","(anonymous)",15,15
+4,2,30,1,4,"(anonymous)@17-20@src/app/api\genres\route.ts","src/app/api\genres\route.ts","(anonymous)","(anonymous)",17,20
+7,2,41,1,10,"(anonymous)@12-21@src/app/api\genres\route.ts","src/app/api\genres\route.ts","(anonymous)","(anonymous)",12,21
+1,1,9,2,1,"(anonymous)@23-23@src/app/api\genres\route.ts","src/app/api\genres\route.ts","(anonymous)","(anonymous)",23,23
+12,2,128,0,25,"GET@5-29@src/app/api\genres\route.ts","src/app/api\genres\route.ts","GET","GET ( )",5,29
+38,9,322,1,47,"POST@11-57@src/app/api\login\route.ts","src/app/api\login\route.ts","POST","POST ( req )",11,57
+4,1,55,3,4,"signResponse@13-16@src/app/api\payment\callback\route.ts","src/app/api\payment\callback\route.ts","signResponse","signResponse ( orderReference , status , time )",13,16
+76,9,489,1,99,"POST@18-116@src/app/api\payment\callback\route.ts","src/app/api\payment\callback\route.ts","POST","POST ( req )",18,116
+63,10,406,1,77,"POST@9-85@src/app/api\payment\create\route.ts","src/app/api\payment\create\route.ts","POST","POST ( req )",9,85
+45,10,348,1,58,"POST@8-65@src/app/api\payment\demo-activate\route.ts","src/app/api\payment\demo-activate\route.ts","POST","POST ( req )",8,65
+140,12,438,1,156,"POST@7-162@src/app/api\payment\return\route.ts","src/app/api\payment\return\route.ts","POST","POST ( req )",7,162
+23,7,199,1,29,"GET@164-192@src/app/api\payment\return\route.ts","src/app/api\payment\return\route.ts","GET","GET ( req )",164,192
+34,6,250,1,42,"GET@7-48@src/app/api\profile\route.ts","src/app/api\profile\route.ts","GET","GET ( req )",7,48
+1,1,6,1,1,"(anonymous)@35-35@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",35,35
+4,1,21,1,4,"(anonymous)@36-39@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",36,39
+1,1,12,1,1,"(anonymous)@44-44@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",44,44
+1,1,6,1,1,"(anonymous)@47-47@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",47,47
+1,1,7,1,1,"(anonymous)@48-48@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",48,48
+1,1,14,1,1,"(anonymous)@51-51@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",51,51
+1,1,10,1,1,"(anonymous)@62-62@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",62,62
+4,4,40,2,4,"tokenMatches@63-66@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","tokenMatches","tokenMatches ( prefToken , candidateToken )",63,66
+1,1,6,1,1,"(anonymous)@73-73@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",73,73
+1,1,7,1,1,"(anonymous)@75-75@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",75,75
+1,1,8,1,1,"(anonymous)@75-75@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",75,75
+10,3,80,1,10,"matchesPreferredGenre@67-76@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","matchesPreferredGenre","matchesPreferredGenre ( bookId )",67,76
+3,1,39,1,3,"(anonymous)@82-84@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",82,84
+3,1,39,1,3,"(anonymous)@85-87@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",85,87
+1,1,32,1,1,"(anonymous)@93-93@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",93,93
+1,1,26,1,1,"(anonymous)@98-98@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",98,98
+1,1,7,1,1,"(anonymous)@109-109@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",109,109
+1,1,4,1,1,"(anonymous)@114-114@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",114,114
+1,1,10,1,1,"(anonymous)@115-115@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",115,115
+1,1,32,1,1,"(anonymous)@130-130@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",130,130
+1,1,26,1,1,"(anonymous)@134-134@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",134,134
+1,1,6,1,1,"(anonymous)@137-137@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",137,137
+1,1,10,1,1,"(anonymous)@139-139@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",139,139
+1,1,10,1,1,"(anonymous)@140-140@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",140,140
+6,3,64,1,6,"(anonymous)@142-147@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",142,147
+1,1,6,1,1,"(anonymous)@149-149@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",149,149
+1,1,8,2,1,"(anonymous)@152-152@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",152,152
+1,3,28,2,1,"(anonymous)@156-156@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",156,156
+1,1,14,1,1,"(anonymous)@157-157@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",157,157
+1,1,26,1,1,"(anonymous)@164-164@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",164,164
+1,1,6,1,1,"(anonymous)@167-167@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",167,167
+1,1,8,2,1,"(anonymous)@170-170@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",170,170
+1,3,28,2,1,"(anonymous)@173-173@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",173,173
+1,1,18,1,1,"(anonymous)@174-174@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",174,174
+1,1,4,1,1,"(anonymous)@178-178@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",178,178
+1,1,7,1,1,"(anonymous)@179-179@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","(anonymous)","(anonymous)",179,179
+109,15,894,1,181,"GET@15-195@src/app/api\recommendations\route.ts","src/app/api\recommendations\route.ts","GET","GET ( req )",15,195
+39,10,327,1,51,"POST@6-56@src/app/api\register\route.ts","src/app/api\register\route.ts","POST","POST ( req )",6,56
+37,9,313,1,46,"POST@8-53@src/app/api\reset-password\route.ts","src/app/api\reset-password\route.ts","POST","POST ( req )",8,53
+38,7,283,1,51,"POST@7-57@src/app/api\subscription\cancel\route.ts","src/app/api\subscription\cancel\route.ts","POST","POST ( req )",7,57
+53,22,509,1,63,"POST@10-72@src/app/api\upload\route.ts","src/app/api\upload\route.ts","POST","POST ( req )",10,72
+1,1,5,1,1,"(anonymous)@20-20@src/app/api\users\preferences\route.ts","src/app/api\users\preferences\route.ts","(anonymous)","(anonymous)",20,20
+1,1,6,1,1,"(anonymous)@24-24@src/app/api\users\preferences\route.ts","src/app/api\users\preferences\route.ts","(anonymous)","(anonymous)",24,24
+28,8,273,1,36,"PATCH@6-41@src/app/api\users\preferences\route.ts","src/app/api\users\preferences\route.ts","PATCH","PATCH ( req )",6,41
+19,7,197,1,24,"GET@43-66@src/app/api\users\preferences\route.ts","src/app/api\users\preferences\route.ts","GET","GET ( req )",43,66
+30,7,246,2,38,"GET@6-43@src/app/api\users\[id]\comments\route.ts","src/app/api\users\[id]\comments\route.ts","GET","GET ( req , {} params )",6,43
+4,5,34,1,4,"getTokenUserId@15-18@src/app/api\users\[id]\route.ts","src/app/api\users\[id]\route.ts","getTokenUserId","getTokenUserId ( decoded )",15,18
+25,7,243,2,32,"GET@21-52@src/app/api\users\[id]\route.ts","src/app/api\users\[id]\route.ts","GET","GET ( req , {} params )",21,52
+64,18,568,2,79,"PUT@55-133@src/app/api\users\[id]\route.ts","src/app/api\users\[id]\route.ts","PUT","PUT ( req , {} params )",55,133
+1,1,4,1,1,"(anonymous)@190-190@src/app/api\users\[id]\route.ts","src/app/api\users\[id]\route.ts","(anonymous)","(anonymous)",190,190
+1,1,4,1,1,"(anonymous)@199-199@src/app/api\users\[id]\route.ts","src/app/api\users\[id]\route.ts","(anonymous)","(anonymous)",199,199
+1,1,8,1,1,"(anonymous)@206-206@src/app/api\users\[id]\route.ts","src/app/api\users\[id]\route.ts","(anonymous)","(anonymous)",206,206
+76,16,719,2,106,"DELETE@136-241@src/app/api\users\[id]\route.ts","src/app/api\users\[id]\route.ts","DELETE","DELETE ( req , {} params )",136,241
+13,5,91,1,16,"checkPremiumExpiry@17-32@src/lib\checkPremiumExpiry.ts","src/lib\checkPremiumExpiry.ts","checkPremiumExpiry","checkPremiumExpiry ( userId )",17,32
+16,9,145,1,22,"parseCloudinaryUrl@4-25@src/lib\cloudinaryCleanup.ts","src/lib\cloudinaryCleanup.ts","parseCloudinaryUrl","parseCloudinaryUrl ( url )",4,25
+12,3,67,1,12,"deleteByUrl@28-39@src/lib\cloudinaryCleanup.ts","src/lib\cloudinaryCleanup.ts","deleteByUrl","deleteByUrl ( url )",28,39
+12,3,59,1,12,"deletePrivatePdf@42-53@src/lib\cloudinaryCleanup.ts","src/lib\cloudinaryCleanup.ts","deletePrivatePdf","deletePrivatePdf ( publicId )",42,53
+3,1,5,1,3,"(anonymous)@35-37@src/lib\dbConnect.ts","src/lib\dbConnect.ts","(anonymous)","(anonymous)",35,37
+20,4,100,0,27,"dbConnect@24-50@src/lib\dbConnect.ts","src/lib\dbConnect.ts","dbConnect","dbConnect ( )",24,50
+21,4,137,1,21,"downloadBook@2-22@src/lib\downloadBook.ts","src/lib\downloadBook.ts","downloadBook","downloadBook ( bookId )",2,22
+8,1,40,1,8,"signToken@5-12@src/lib\jwt.ts","src/lib\jwt.ts","signToken","signToken ( payload )",5,12
+7,2,26,1,7,"verifyToken@14-20@src/lib\jwt.ts","src/lib\jwt.ts","verifyToken","verifyToken ( token )",14,20
+12,2,62,0,12,"getEtherealTransporter@8-19@src/lib\mailer.ts","src/lib\mailer.ts","getEtherealTransporter","getEtherealTransporter ( )",8,19
+34,7,253,1,45,"sendMail@33-77@src/lib\mailer.ts","src/lib\mailer.ts","sendMail","sendMail ( {} to subject text html )",33,77
+6,3,43,0,6,"(anonymous)@10-15@src/lib\rateLimit.ts","src/lib\rateLimit.ts","(anonymous)","(anonymous)",10,15
+17,4,151,3,20,"rateLimit@17-36@src/lib\rateLimit.ts","src/lib\rateLimit.ts","rateLimit","rateLimit ( identifier , limit , windowMs )",17,36
+5,2,43,1,5,"getClientIp@38-42@src/lib\rateLimit.ts","src/lib\rateLimit.ts","getClientIp","getClientIp ( req )",38,42
+1,1,6,1,1,"(anonymous)@20-20@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",20,20
+7,1,34,1,7,"genreTokens@16-22@src/lib\recommendations.ts","src/lib\recommendations.ts","genreTokens","genreTokens ( genre )",16,22
+4,4,39,2,4,"genreTokenMatches@26-29@src/lib\recommendations.ts","src/lib\recommendations.ts","genreTokenMatches","genreTokenMatches ( prefToken , candidateToken )",26,29
+3,2,14,1,3,"(anonymous)@38-40@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",38,40
+3,1,11,1,5,"(anonymous)@37-41@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",37,41
+9,4,94,2,14,"genreSimilarity@31-44@src/lib\recommendations.ts","src/lib\recommendations.ts","genreSimilarity","genreSimilarity ( a , b )",31,44
+1,1,11,1,1,"(anonymous)@51-51@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",51,51
+1,1,15,1,1,"(anonymous)@52-52@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",52,52
+9,1,54,2,9,"buildUserPreferences@46-54@src/lib\recommendations.ts","src/lib\recommendations.ts","buildUserPreferences","buildUserPreferences ( favoriteBookIds , ratings )",46,54
+1,1,14,1,1,"(anonymous)@68-68@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",68,68
+13,5,120,1,18,"(anonymous)@71-88@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",71,88
+10,2,52,3,28,"contentBasedScores@62-89@src/lib\recommendations.ts","src/lib\recommendations.ts","contentBasedScores","contentBasedScores ( likedBooks , candidateBooks , weights )",62,89
+1,1,10,1,1,"(anonymous)@100-100@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",100,100
+1,1,14,1,1,"(anonymous)@102-102@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",102,102
+1,1,7,1,1,"(anonymous)@108-108@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",108,108
+1,1,7,1,1,"(anonymous)@108-108@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",108,108
+8,1,55,1,8,"(anonymous)@105-112@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",105,112
+10,2,64,2,18,"genrePreferenceScores@96-113@src/lib\recommendations.ts","src/lib\recommendations.ts","genrePreferenceScores","genrePreferenceScores ( preferredGenres , candidateBooks )",96,113
+1,1,10,1,1,"(anonymous)@124-124@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",124,124
+1,1,10,1,1,"(anonymous)@125-125@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",125,125
+5,3,51,1,5,"(anonymous)@130-134@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",130,134
+1,1,8,2,1,"(anonymous)@136-136@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",136,136
+11,1,104,2,18,"hybridRank@120-137@src/lib\recommendations.ts","src/lib\recommendations.ts","hybridRank","hybridRank ( contentScores , genreScores )",120,137
+1,2,10,1,1,"(anonymous)@163-163@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",163,163
+1,2,10,2,1,"(anonymous)@165-165@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",165,165
+6,4,68,1,6,"(anonymous)@168-173@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",168,173
+10,3,67,2,16,"communityScores@159-174@src/lib\recommendations.ts","src/lib\recommendations.ts","communityScores","communityScores ( books , minVotes 3 )",159,174
+1,1,10,1,1,"(anonymous)@187-187@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",187,187
+1,1,10,1,1,"(anonymous)@188-188@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",188,188
+1,1,10,1,1,"(anonymous)@189-189@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",189,189
+6,4,69,1,6,"(anonymous)@194-199@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",194,199
+1,1,8,2,1,"(anonymous)@201-201@src/lib\recommendations.ts","src/lib\recommendations.ts","(anonymous)","(anonymous)",201,201
+13,1,132,3,21,"hybridRankFull@182-202@src/lib\recommendations.ts","src/lib\recommendations.ts","hybridRankFull","hybridRankFull ( contentScores , genreScores , communityScoresArr )",182,202
+1,1,5,0,1,"(anonymous)@18-18@src/lib\uploadFile.ts","src/lib\uploadFile.ts","(anonymous)","(anonymous)",18,18
+19,4,164,3,21,"uploadFile@1-21@src/lib\uploadFile.ts","src/lib\uploadFile.ts","uploadFile","uploadFile ( file , type , access 'public' )",1,21
+6,4,42,2,6,"(anonymous)@29-34@src/lib\uploadToCloudinary.ts","src/lib\uploadToCloudinary.ts","(anonymous)","(anonymous)",29,34
+15,3,76,2,23,"(anonymous)@16-38@src/lib\uploadToCloudinary.ts","src/lib\uploadToCloudinary.ts","(anonymous)","(anonymous)",16,38
+8,2,43,4,30,"uploadToCloudinary@10-39@src/lib\uploadToCloudinary.ts","src/lib\uploadToCloudinary.ts","uploadToCloudinary","uploadToCloudinary ( fileBuffer , folder , resourceType , access 'public' )",10,39
+16,5,117,1,17,"verifyAdmin@3-19@src/lib\verifyAdmin.ts","src/lib\verifyAdmin.ts","verifyAdmin","verifyAdmin ( authHeader )",3,19
+7,2,35,0,7,"getSystemSettings@25-31@src/models\SystemSettings.ts","src/models\SystemSettings.ts","getSystemSettings","getSystemSettings ( )",25,31
